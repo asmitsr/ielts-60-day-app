@@ -22,6 +22,7 @@ export interface Env {
   GMAIL_CLIENT_SECRET?: string;
   GMAIL_REFRESH_TOKEN?: string;
   GMAIL_SENDER?: string;
+  AI_KEY_SECRET?: string;
 }
 export interface AuthedUser {
   id: number;

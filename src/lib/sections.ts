@@ -5,6 +5,7 @@ export type SectionId =
   | 'steps'
   | 'practice'
   | 'resources'
+  | 'ai'
   | 'format'
   | 'cuecards'
   | 'techniques'
@@ -23,6 +24,7 @@ export const SECTIONS: SectionMeta[] = [
   { id: 'steps', label: 'ধাপ গাইড', icon: 'steps', blurb: 'প্রতিটা section-এ ভালো করার ধাপ' },
   { id: 'practice', label: 'প্র্যাকটিস', icon: 'play', blurb: 'কোথা থেকে প্র্যাকটিস করবে' },
   { id: 'resources', label: 'রিসোর্স', icon: 'book', blurb: '101টি লিংক, PDF, অ্যাপ' },
+  { id: 'ai', label: 'AI সহায়ক', icon: 'spark', blurb: 'এই অ্যাপের তথ্য থেকে উত্তর' },
   { id: 'format', label: 'পরীক্ষার ফরম্যাট', icon: 'doc', blurb: '4 module, সময়, স্কোরিং' },
   { id: 'cuecards', label: 'কিউ কার্ড', icon: 'chat', blurb: '148টি Makkar cue card' },
   { id: 'techniques', label: 'টেকনিক', icon: 'bulb', blurb: '12টি টেকনিক, module অনুযায়ী' },

@@ -17,6 +17,14 @@ export interface SessionInfo {
   current: boolean;
 }
 
+export interface AiSettingsResponse {
+  configured: boolean;
+  provider?: string;
+  base_url?: string;
+  model?: string;
+  has_key?: boolean;
+}
+
 export class ApiError extends Error {
   status: number;
   constructor(status: number, message: string) {
@@ -118,5 +126,22 @@ export const api = {
     call<{ ok: boolean }>('/api/block-times', {
       method: 'POST',
       body: JSON.stringify({ module, start_time: startTime }),
+    }),
+  clearBlockTime: (module: string) =>
+    call<{ ok: boolean }>(`/api/block-times?module=${encodeURIComponent(module)}`, {
+      method: 'DELETE',
+    }),
+  getAiSettings: () => call<AiSettingsResponse>('/api/ai/settings'),
+  saveAiSettings: (provider: string, baseUrl: string, model: string, key: string) =>
+    call<AiSettingsResponse>('/api/ai/settings', {
+      method: 'PUT',
+      body: JSON.stringify({ provider, base_url: baseUrl, model, key }),
+    }),
+  deleteAiSettings: () => call<{ ok: boolean }>('/api/ai/settings', { method: 'DELETE' }),
+  testAiSettings: () => call<{ ok: boolean }>('/api/ai/test', { method: 'POST', body: '{}' }),
+  askAi: (question: string) =>
+    call<{ answer: string }>('/api/ai/chat', {
+      method: 'POST',
+      body: JSON.stringify({ question }),
     }),
 };

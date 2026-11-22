@@ -23,6 +23,10 @@ export async function onRequestPost({ request, env }: FunctionContext) {
   if (password.length < 8 || password.length > 128) {
     return json({ error: 'Password must be 8–128 characters.' }, 400);
   }
+  // Full name is mandatory: no account without one.
+  if (fullName.length < 2) {
+    return json({ error: 'Enter your full name.' }, 400);
+  }
   if (!env.SESSION_SECRET) {
     return json({ error: 'Server is not configured (SESSION_SECRET missing).' }, 500);
   }
@@ -38,7 +42,7 @@ export async function onRequestPost({ request, env }: FunctionContext) {
   const res = await env.DB.prepare(
     'INSERT INTO users (email, password_hash, salt, full_name, terms_accepted_at, privacy_accepted_at) VALUES (?, ?, ?, ?, ?, ?)',
   )
-    .bind(email, passwordHash, salt, fullName || null, termsAt, privacyAt)
+    .bind(email, passwordHash, salt, fullName, termsAt, privacyAt)
     .run();
   const userId = res.meta?.last_row_id;
   if (!userId) return json({ error: 'Could not create the account. Try again.' }, 500);

@@ -5,7 +5,17 @@ import { Icon, type IconName } from '../lib/icons';
 import type { ResolvedSettings, ThemePref, UserSettings } from '../lib/settings';
 import type { InfoPageId } from './InfoSection';
 
-type SubPage = 'list' | 'profile' | 'appearance' | 'security' | 'notifications' | 'study' | 'privacy' | 'help' | 'account';
+export type SettingsSubPage =
+  | 'list'
+  | 'profile'
+  | 'appearance'
+  | 'security'
+  | 'notifications'
+  | 'study'
+  | 'ai'
+  | 'privacy'
+  | 'help'
+  | 'account';
 
 const SUPPORT_EMAIL = 'asmitsr.official@gmail.com';
 
@@ -75,6 +85,7 @@ export function SettingsSection({
   me,
   settings,
   appearance,
+  initialPage,
   onProfileUpdated,
   onAppearanceChange,
   onSettingsSaved,
@@ -87,6 +98,8 @@ export function SettingsSection({
   // The effective theme preference (App state) — the checkmark must show
   // what is actually applied, not the last synced server value.
   appearance: ThemePref;
+  // Deep-link target (e.g. the AI section opens Settings → AI directly).
+  initialPage?: SettingsSubPage;
   onProfileUpdated: (fullName: string | null) => void;
   onAppearanceChange: (pref: ThemePref) => Promise<void>;
   onSettingsSaved: (patch: UserSettings) => Promise<void>;
@@ -94,7 +107,7 @@ export function SettingsSection({
   onAccountDeleted: () => void;
   onShowInfo: (page: InfoPageId) => void;
 }) {
-  const [page, setPage] = useState<SubPage>('list');
+  const [page, setPage] = useState<SettingsSubPage>(initialPage ?? 'list');
   const back = () => setPage('list');
 
   if (page === 'profile') return <ProfilePage me={me} onBack={back} onSaved={onProfileUpdated} />;
@@ -108,18 +121,20 @@ export function SettingsSection({
   if (page === 'study') {
     return <StudyPage settings={settings} onBack={back} onSave={onSettingsSaved} />;
   }
+  if (page === 'ai') return <AiPage onBack={back} />;
   if (page === 'privacy') return <PrivacyPage onBack={back} onShowInfo={onShowInfo} />;
   if (page === 'help') return <HelpPage onBack={back} onShowInfo={onShowInfo} />;
   if (page === 'account') {
     return <AccountPage me={me} onBack={back} onLogout={onLogout} onDeleted={onAccountDeleted} />;
   }
 
-  const rows: { id: SubPage; label: string; icon: IconName; blurb: string }[] = [
+  const rows: { id: SettingsSubPage; label: string; icon: IconName; blurb: string }[] = [
     { id: 'profile', label: 'My Profile', icon: 'user', blurb: me.full_name ?? me.email },
     { id: 'appearance', label: 'Appearance', icon: 'sun', blurb: 'Light, Dark, System Default' },
     { id: 'security', label: 'Security', icon: 'shield', blurb: 'Password, Active Sessions' },
     { id: 'notifications', label: 'Notifications', icon: 'bell', blurb: 'In-app reminders' },
     { id: 'study', label: 'Study Preferences', icon: 'target', blurb: 'পড়ার পছন্দ' },
+    { id: 'ai', label: 'AI সহায়ক', icon: 'spark', blurb: 'তোমার নিজের API key দিয়ে' },
     { id: 'privacy', label: 'Privacy', icon: 'info', blurb: 'তোমার ডেটা, ডাউনলোড' },
     { id: 'help', label: 'Help & Support', icon: 'help', blurb: 'FAQ, যোগাযোগ' },
     { id: 'account', label: 'Account Management', icon: 'trash', blurb: 'Logout, Delete Account' },
@@ -194,7 +209,7 @@ function ProfilePage({
               setName(e.target.value);
               setSaved(false);
             }}
-            placeholder="নাম লেখো (খালি রাখলে মুছে যাবে)"
+            placeholder="তোমার নাম লেখো"
           />
         </div>
         {error && (
@@ -583,6 +598,258 @@ function StudyPage({
         <button type="button" className="btn btn-primary" onClick={save} disabled={busy}>
           {busy ? 'সেভ হচ্ছে…' : 'সেভ করো'}
         </button>
+      </div>
+    </SubShell>
+  );
+}
+
+type AiPresetId = 'freemodel' | 'gemini' | 'custom';
+const AI_PRESETS: Record<AiPresetId, { label: string; base: string; model: string }> = {
+  freemodel: {
+    label: 'FreeModel (Claude)',
+    base: 'https://freemodel.in/v1',
+    model: 'claude-sonnet-5-5',
+  },
+  gemini: {
+    label: 'Gemini',
+    base: 'https://generativelanguage.googleapis.com/v1beta/openai/',
+    model: 'models/gemini-3.8-flash',
+  },
+  custom: { label: 'Custom (নিজের API)', base: '', model: '' },
+};
+
+function AiPage({ onBack }: { onBack: () => void }) {
+  const [loaded, setLoaded] = useState(false);
+  const [configured, setConfigured] = useState(false);
+  const [preset, setPreset] = useState<AiPresetId>('freemodel');
+  const [baseUrl, setBaseUrl] = useState(AI_PRESETS.freemodel.base);
+  const [model, setModel] = useState(AI_PRESETS.freemodel.model);
+  const [key, setKey] = useState('');
+  const [showKey, setShowKey] = useState(false);
+  const [error, setError] = useState('');
+  const [saved, setSaved] = useState(false);
+  const [testOk, setTestOk] = useState<boolean | null>(null);
+  const [testMsg, setTestMsg] = useState('');
+  const [busy, setBusy] = useState(false);
+  const [testBusy, setTestBusy] = useState(false);
+
+  useEffect(() => {
+    api
+      .getAiSettings()
+      .then((r) => {
+        if (r.configured) {
+          setConfigured(true);
+          const p: AiPresetId =
+            r.provider === 'gemini' || r.provider === 'custom' ? r.provider : 'freemodel';
+          setPreset(p);
+          setBaseUrl(r.base_url ?? '');
+          setModel(r.model ?? '');
+        }
+      })
+      .catch(() => {})
+      .finally(() => setLoaded(true));
+  }, []);
+
+  function pickPreset(p: AiPresetId) {
+    setPreset(p);
+    setBaseUrl(AI_PRESETS[p].base);
+    setModel(AI_PRESETS[p].model);
+    setSaved(false);
+    setTestOk(null);
+  }
+
+  function validate(): string | null {
+    if (!baseUrl.startsWith('https://')) return 'Base URL https:// দিয়ে শুরু হতে হবে।';
+    if (model.trim().length === 0) return 'Model খালি রাখা যাবে না।';
+    if (key.length < 8 || key.length > 500) return 'API key 8–500 অক্ষরের হতে হবে।';
+    return null;
+  }
+
+  async function save() {
+    setError('');
+    setSaved(false);
+    setTestOk(null);
+    const err = validate();
+    if (err) {
+      setError(err);
+      return;
+    }
+    setBusy(true);
+    try {
+      await api.saveAiSettings(preset, baseUrl.trim(), model.trim(), key);
+      setKey('');
+      setConfigured(true);
+      setSaved(true);
+    } catch (err) {
+      setError(err instanceof ApiError ? err.message : 'সেভ হয়নি। আবার চেষ্টা করো।');
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function test() {
+    setError('');
+    setTestOk(null);
+    setTestMsg('');
+    setTestBusy(true);
+    try {
+      await api.testAiSettings();
+      setTestOk(true);
+      setTestMsg('API key কাজ করছে।');
+    } catch (err) {
+      setTestOk(false);
+      setTestMsg(err instanceof ApiError ? err.message : 'Test ব্যর্থ হয়েছে।');
+    } finally {
+      setTestBusy(false);
+    }
+  }
+
+  async function clear() {
+    setError('');
+    setSaved(false);
+    setTestOk(null);
+    setBusy(true);
+    try {
+      await api.deleteAiSettings();
+      setConfigured(false);
+      setPreset('freemodel');
+      setBaseUrl(AI_PRESETS.freemodel.base);
+      setModel(AI_PRESETS.freemodel.model);
+      setKey('');
+    } catch (err) {
+      setError(err instanceof ApiError ? err.message : 'মোছা হয়নি। আবার চেষ্টা করো।');
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <SubShell title="AI সহায়ক" onBack={onBack}>
+      <div className="card">
+        <p className="muted">
+          AI সহায়ক তোমার নিজের API key দিয়ে চলে — FreeModel (Claude), Gemini, বা যেকোনো
+          OpenAI-compatible API। সে শুধু এই অ্যাপের তথ্য থেকে উত্তর দেয়।
+        </p>
+        {!loaded && <p className="muted">লোড হচ্ছে…</p>}
+        {loaded && (
+          <div className="kv">
+            <span className="muted">অবস্থা</span>
+            <strong>
+              {configured ? `সেটআপ করা আছে — ${AI_PRESETS[preset].label} · ${model}` : 'সেটআপ করা হয়নি'}
+            </strong>
+          </div>
+        )}
+        <div className="field" style={{ marginTop: 14 }}>
+          <label htmlFor="ai-preset">Provider</label>
+          <select id="ai-preset" value={preset} onChange={(e) => pickPreset(e.target.value as AiPresetId)}>
+            {(Object.keys(AI_PRESETS) as AiPresetId[]).map((p) => (
+              <option key={p} value={p}>
+                {AI_PRESETS[p].label}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="field">
+          <label htmlFor="ai-base">Base URL</label>
+          <input
+            id="ai-base"
+            type="text"
+            inputMode="url"
+            autoComplete="off"
+            value={baseUrl}
+            onChange={(e) => {
+              setBaseUrl(e.target.value);
+              setSaved(false);
+            }}
+            placeholder="https://..."
+          />
+        </div>
+        <div className="field">
+          <label htmlFor="ai-model">Model</label>
+          <input
+            id="ai-model"
+            type="text"
+            autoComplete="off"
+            value={model}
+            onChange={(e) => {
+              setModel(e.target.value);
+              setSaved(false);
+            }}
+            placeholder="যেমন claude-sonnet-5-5"
+          />
+        </div>
+        <div className="field">
+          <label htmlFor="ai-key">API Key</label>
+          <div className="password-wrap">
+            <input
+              id="ai-key"
+              type={showKey ? 'text' : 'password'}
+              autoComplete="off"
+              value={key}
+              onChange={(e) => {
+                setKey(e.target.value);
+                setSaved(false);
+              }}
+              placeholder="API key (সেভ করতে আবার দিতে হবে)"
+            />
+            <button
+              type="button"
+              className="password-toggle"
+              onClick={() => setShowKey(!showKey)}
+              aria-label={showKey ? 'Key লুকাও' : 'Key দেখাও'}
+            >
+              <Icon name={showKey ? 'eyeOff' : 'eye'} size={19} />
+            </button>
+          </div>
+          <p className="muted">
+            Key AES-GCM দিয়ে encrypt করে রাখা হয় — plaintext কোথাও দেখা যায় না, নিরাপত্তার জন্য
+            সেভ করা key আর দেখানো হয় না।
+          </p>
+        </div>
+        {error && (
+          <div className="alert" role="alert">
+            <Icon name="alert" size={18} />
+            <span>{error}</span>
+          </div>
+        )}
+        {saved && (
+          <div className="alert alert-success" role="status">
+            <Icon name="success" size={18} />
+            <span>AI সেটিংস সেভ হয়েছে। এখন Test করে দেখো key কাজ করছে কিনা।</span>
+          </div>
+        )}
+        {testOk === true && (
+          <div className="alert alert-success" role="status">
+            <Icon name="success" size={18} />
+            <span>{testMsg}</span>
+          </div>
+        )}
+        {testOk === false && (
+          <div className="alert" role="alert">
+            <Icon name="alert" size={18} />
+            <span>{testMsg}</span>
+          </div>
+        )}
+        <div className="tp-actions">
+          <button type="button" className="btn btn-primary" onClick={save} disabled={busy}>
+            {busy ? 'সেভ হচ্ছে…' : 'সেভ করো'}
+          </button>
+          <button type="button" className="btn" onClick={test} disabled={!configured || testBusy}>
+            {testBusy ? 'Test হচ্ছে…' : 'Test করো'}
+          </button>
+        </div>
+        {!configured && <p className="muted">Test করতে আগে সেভ করো।</p>}
+        {configured && (
+          <button
+            type="button"
+            className="btn btn-danger"
+            onClick={clear}
+            disabled={busy}
+            style={{ marginTop: 10 }}
+          >
+            AI সেটিংস মুছে ফেলো
+          </button>
+        )}
       </div>
     </SubShell>
   );

@@ -609,14 +609,6 @@ a {
   font-weight: 600;
   font-size: 14px;
 }
-.block-row input[type="time"] {
-  font: inherit;
-  padding: 7px 10px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--text);
-}
 
 /* ---- Navigation ---- */
 .pillbar {
@@ -1120,4 +1112,179 @@ a {
 .faq-item:last-child {
   border-bottom: 0;
   padding-bottom: 0;
+}
+
+/* ---- Digital time picker (block times) ---- */
+.block-time-btn {
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 7px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  min-width: 96px;
+}
+.block-time-btn:active {
+  background: var(--surface-muted);
+}
+.block-time-btn:disabled,
+.block-clear-btn:disabled {
+  opacity: 0.5;
+}
+.block-clear-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 13px;
+  flex: 0 0 auto;
+}
+.block-clear-btn:active {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+.tp-title {
+  margin: 0 0 4px;
+  text-align: center;
+}
+.tp-preview {
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  margin: 0 0 12px;
+}
+.tp-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+.tp-col-label {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.tp-col {
+  max-height: 216px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 2px;
+}
+.tp-opt {
+  width: 100%;
+  padding: 11px 0;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  font: inherit;
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  color: var(--text);
+}
+.tp-opt:active {
+  background: var(--surface-muted);
+}
+.tp-opt.selected {
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 700;
+}
+.tp-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+.tp-actions .btn {
+  flex: 1;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+/* ---- AI assistant ---- */
+.field select {
+  width: 100%;
+  padding: 11px 13px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+}
+.ai-note {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+.ai-note svg {
+  flex: none;
+  margin-top: 2px;
+  color: var(--accent);
+}
+.ai-thread {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.ai-msg {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 13px;
+  border-radius: 12px;
+  max-width: 92%;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.ai-msg.ai {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  align-self: flex-start;
+}
+.ai-msg.user {
+  background: var(--accent-soft);
+  align-self: flex-end;
+}
+.ai-msg-role {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.ai-composer {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+.ai-composer input {
+  flex: 1;
+  min-width: 0;
+  padding: 11px 13px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+}
+.ai-composer .btn {
+  flex: none;
 }

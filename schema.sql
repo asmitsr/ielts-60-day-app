@@ -1,7 +1,7 @@
 -- IELTS 60-Day App — D1 schema (full reference).
--- The same statements live in migrations/0001_init.sql and
--- migrations/0002_platform.sql, which is what
--- `wrangler d1 migrations apply` runs. Keep all three in sync.
+-- The same statements live in migrations/0001_init.sql,
+-- migrations/0002_platform.sql and migrations/0003_ai_settings.sql,
+-- which is what `wrangler d1 migrations apply` runs. Keep all four in sync.
 -- Every progress row belongs to a user; all progress queries are scoped
 -- with WHERE user_id = ? so no user can read or write another user's data.
 
@@ -56,5 +56,17 @@ CREATE INDEX IF NOT EXISTS idx_resets_user ON password_resets(user_id);
 CREATE TABLE IF NOT EXISTS user_settings (
   user_id INTEGER PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
   settings_json TEXT NOT NULL DEFAULT '{}',
+  updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now'))
+);
+
+-- 0003_ai_settings: per-user AI provider settings. The API key is stored
+-- AES-GCM-encrypted (key_enc + iv); the plaintext key is never stored.
+CREATE TABLE IF NOT EXISTS ai_settings (
+  user_id INTEGER PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+  provider TEXT NOT NULL,
+  base_url TEXT NOT NULL,
+  model TEXT NOT NULL,
+  key_enc TEXT NOT NULL,
+  iv TEXT NOT NULL,
   updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now'))
 );

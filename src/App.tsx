@@ -21,7 +21,8 @@ import { ResourcesSection } from './sections/ResourcesSection';
 import { FormatSection } from './sections/FormatSection';
 import { CueCardsSection } from './sections/CueCardsSection';
 import { TechniquesSection } from './sections/TechniquesSection';
-import { SettingsSection } from './sections/SettingsSection';
+import { AiSection } from './sections/AiSection';
+import { SettingsSection, type SettingsSubPage } from './sections/SettingsSection';
 import { InfoSection, type InfoPageId } from './sections/InfoSection';
 import './theme.css';
 
@@ -51,6 +52,7 @@ export default function App() {
   const [me, setMe] = useState<MeResponse | null>(null);
   const [section, setSection] = useState<SectionId>('plan');
   const [infoPage, setInfoPage] = useState<InfoPageId | undefined>(undefined);
+  const [settingsSub, setSettingsSub] = useState<SettingsSubPage | undefined>(undefined);
   const [moreOpen, setMoreOpen] = useState(false);
   const [progress, setProgress] = useState<Record<string, true>>({});
   const [blockTimes, setBlockTimes] = useState<Record<string, string>>({});
@@ -125,9 +127,20 @@ export default function App() {
     setSection(s);
     setMoreOpen(false);
     if (s !== 'info') setInfoPage(undefined);
+    // A plain section switch always opens Settings at its list; the AI
+    // section's deep link sets the sub-page after calling this.
+    setSettingsSub(undefined);
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
   }, []);
+
+  // AI section → Settings → AI sub-page (deep link). selectSection clears
+  // the sub-page first; this set runs after it in the same batch, so 'ai'
+  // is what the freshly mounted SettingsSection reads as initialPage.
+  const openAiSettings = useCallback(() => {
+    selectSection('settings');
+    setSettingsSub('ai');
+  }, [selectSection]);
 
   const showInfo = useCallback(
     (page: InfoPageId) => {
@@ -186,6 +199,23 @@ export default function App() {
     setSaveError('');
     try {
       await api.setBlockTime(module, startTime);
+    } catch (err) {
+      setBlockTimes(prev);
+      if (err instanceof ApiError && err.status === 401) setAuth('guest');
+      else setSaveError(err instanceof ApiError ? err.message : 'সেভ হয়নি। আবার চেষ্টা করো।');
+    }
+  }
+
+  async function clearBlockTime(module: string) {
+    const prev = blockTimes;
+    setBlockTimes((b) => {
+      const next = { ...b };
+      delete next[module];
+      return next;
+    });
+    setSaveError('');
+    try {
+      await api.clearBlockTime(module);
     } catch (err) {
       setBlockTimes(prev);
       if (err instanceof ApiError && err.status === 401) setAuth('guest');
@@ -325,6 +355,7 @@ export default function App() {
             blockTimes={blockTimes}
             onToggleTask={toggleTask}
             onSaveBlockTime={saveBlockTime}
+            onClearBlockTime={clearBlockTime}
             apiDown={apiDown}
             autoExpandToday={settings.study.autoExpandToday}
             notifications={settings.notifications}
@@ -336,11 +367,13 @@ export default function App() {
         {section === 'format' && <FormatSection />}
         {section === 'cuecards' && <CueCardsSection />}
         {section === 'techniques' && <TechniquesSection />}
+        {section === 'ai' && <AiSection onOpenSettings={openAiSettings} />}
         {section === 'settings' && me && (
           <SettingsSection
             me={me}
             settings={settings}
             appearance={pref}
+            initialPage={settingsSub}
             onProfileUpdated={(fullName) => setMe((m) => (m ? { ...m, full_name: fullName } : m))}
             onAppearanceChange={changeAppearance}
             onSettingsSaved={saveSettings}

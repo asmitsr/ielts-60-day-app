@@ -33,3 +33,16 @@ export async function onRequestPost({ request, env }: FunctionContext) {
     .run();
   return json({ ok: true });
 }
+
+export async function onRequestDelete({ request, env }: FunctionContext) {
+  const user = await getSessionUser(request, env);
+  if (!user) return json({ error: 'Not signed in.' }, 401);
+  const module = new URL(request.url).searchParams.get('module');
+  if (!module || !MODULES.includes(module)) {
+    return json({ error: 'module must be Listening, Reading, Writing or Speaking.' }, 400);
+  }
+  await env.DB.prepare('DELETE FROM block_times WHERE user_id = ? AND module = ?')
+    .bind(user.id, module)
+    .run();
+  return json({ ok: true });
+}

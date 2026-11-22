@@ -127,6 +127,10 @@ export function AuthScreen({
       return;
     }
     if (mode === 'register') {
+      if (fullName.trim().length < 2) {
+        setError('তোমার নাম দাও — নাম ছাড়া অ্যাকাউন্ট খোলা যাবে না।');
+        return;
+      }
       if (password !== confirm) {
         setError('দুই Password মিলছে না।');
         return;
@@ -178,7 +182,7 @@ export function AuthScreen({
         <form onSubmit={submit}>
           {mode === 'register' && (
             <div className="field">
-              <label htmlFor="auth-name">Full Name (optional)</label>
+              <label htmlFor="auth-name">Full Name *</label>
               <input
                 id="auth-name"
                 type="text"

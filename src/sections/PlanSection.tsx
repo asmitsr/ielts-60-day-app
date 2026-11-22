@@ -71,6 +71,7 @@ export function PlanSection({
   blockTimes,
   onToggleTask,
   onSaveBlockTime,
+  onClearBlockTime,
   apiDown,
   autoExpandToday,
   notifications,
@@ -79,6 +80,7 @@ export function PlanSection({
   blockTimes: Record<string, string>;
   onToggleTask: (day: number, taskIndex: number, done: boolean) => void;
   onSaveBlockTime: (module: string, startTime: string) => void;
+  onClearBlockTime: (module: string) => void;
   apiDown: boolean;
   autoExpandToday: boolean;
   notifications: ResolvedSettings['notifications'];
@@ -98,7 +100,7 @@ export function PlanSection({
       </p>
       <NowPanel blockTimes={blockTimes} />
       <ReminderBanner blockTimes={blockTimes} notifications={notifications} />
-      <BlockTimeEditor blockTimes={blockTimes} onSave={onSaveBlockTime} disabled={apiDown} />
+      <BlockTimeEditor blockTimes={blockTimes} onSave={onSaveBlockTime} onClear={onClearBlockTime} disabled={apiDown} />
       {PLAN.phases.map((phase) => (
         <div key={phase.phase}>
           <div className="phase-head">
