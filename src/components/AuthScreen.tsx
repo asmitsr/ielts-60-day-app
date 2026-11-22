@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { api, ApiError } from '../lib/api';
 import { Icon } from '../lib/icons';
 
@@ -78,6 +78,9 @@ export function AuthScreen({
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
   const [busy, setBusy] = useState(false);
+  // null = config not loaded yet; the register link stays visible until
+  // the server says registration is closed (the server enforces 403 anyway).
+  const [registrationOpen, setRegistrationOpen] = useState<boolean | null>(null);
 
   const pw = strength(password);
 
@@ -86,6 +89,16 @@ export function AuthScreen({
     setError('');
     setNotice('');
   }
+
+  useEffect(() => {
+    api
+      .getConfig()
+      .then((c) => {
+        setRegistrationOpen(c.registrationOpen);
+        if (!c.registrationOpen) switchMode('login');
+      })
+      .catch(() => {});
+  }, []);
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -197,7 +210,7 @@ export function AuthScreen({
                 value={password}
                 onChange={setPassword}
                 autoComplete={mode === 'login' ? 'current-password' : 'new-password'}
-                placeholder="কমপক্ষে 8 অক্ষর"
+                placeholder={mode === 'login' ? 'তোমার Password' : 'কমপক্ষে 8 অক্ষর'}
               />
               {mode === 'register' && password.length > 0 && (
                 <div className="strength" aria-live="polite">
@@ -270,13 +283,16 @@ export function AuthScreen({
           </p>
         )}
         <p className="auth-switch">
-          {mode === 'login' && (
+          {mode === 'login' && registrationOpen !== false && (
             <>
               অ্যাকাউন্ট নেই?{' '}
               <button type="button" onClick={() => switchMode('register')}>
                 অ্যাকাউন্ট খোলো
               </button>
             </>
+          )}
+          {mode === 'login' && registrationOpen === false && (
+            <span className="muted">নতুন অ্যাকাউন্ট খোলা এখন বন্ধ আছে।</span>
           )}
           {mode === 'register' && (
             <>

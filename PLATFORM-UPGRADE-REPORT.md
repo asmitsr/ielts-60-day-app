@@ -16,11 +16,11 @@
 - Guest legal view: the Terms / Privacy links open the real legal pages without an account.
 
 ### 1.2 Forgot / reset password (real, no fake UI)
-- `POST /api/auth/forgot-password` — always returns `{ok:true}` for a well-formed request, whether or not the account exists (no account enumeration). Creates a token, invalidates any earlier unused token for the user, sends email via the Resend HTTPS API.
+- `POST /api/auth/forgot-password` — always returns `{ok:true}` for a well-formed request, whether or not the account exists (no account enumeration). Creates a token, invalidates any earlier unused token for the user, sends email via the Gmail API.
 - `POST /api/auth/reset-password` — validates the SHA-256 token hash, 1-hour expiry, single-use; sets the new password and **revokes ALL sessions** (every device must log in again).
 - Reset page (`src/components/ResetPasswordScreen.tsx`, route `/reset-password?token=…`, served by `public/_redirects`) with new password + confirm + strength meter + success state.
-- **Fail-closed:** with no `RESEND_API_KEY` the endpoint returns 503 with a clear message ("Password reset is not set up yet — the email service is not configured") instead of pretending an email was sent. If the Resend send fails, the endpoint returns 503 and **deletes the token row** so no stale token lingers.
-- **No Resend key exists yet** — see §6 for what the user still owes.
+- **Fail-closed:** with no Gmail credentials (`GMAIL_CLIENT_ID` / `GMAIL_CLIENT_SECRET` / `GMAIL_REFRESH_TOKEN`) the endpoint returns 503 with a clear message ("Password reset is not set up yet — the email service is not configured") instead of pretending an email was sent. If the Gmail send fails, the endpoint returns 503 and **deletes the token row** so no stale token lingers.
+- **No Gmail credentials exist yet** — see §6 for what the user still owes.
 
 ### 1.3 Settings page (`src/sections/SettingsSection.tsx`, new section)
 Reachable from the আরও sheet and the desktop pill bar. 8 sub-pages:
@@ -42,7 +42,7 @@ Privacy Policy, Terms & Conditions, Disclaimer, FAQ, About, Contact & Support, D
 - **New endpoints:** `forgot-password`, `reset-password`, `change-password`, `PATCH /api/auth/profile`, `GET /api/auth/sessions`, `POST /api/auth/sessions/revoke`, `GET/PUT /api/settings`, `DELETE /api/auth/account`.
 - **Modified:** `register` (optional full_name + server-side consent timestamps), `login` (optional `remember`), `me` (returns full_name + created_at too), `createSession` (takes the session length as a parameter; stores user_agent; short sessions get no `Max-Age`).
 - **Tokens:** random 32 bytes, only the SHA-256 hash is stored, 1-hour expiry, single-use, invalidated when a new reset is requested.
-- **`.env.example`** documents `RESEND_API_KEY` + `RESEND_FROM`.
+- **`.env.example`** documents the three Gmail secrets (`GMAIL_CLIENT_ID` / `GMAIL_CLIENT_SECRET` / `GMAIL_REFRESH_TOKEN`).
 
 ### 1.6 Files changed / added (platform scope only)
 **Added (14):** `migrations/0002_platform.sql`, `functions/api/auth/forgot-password.ts`, `functions/api/auth/reset-password.ts`, `functions/api/auth/change-password.ts`, `functions/api/auth/profile.ts`, `functions/api/auth/sessions.ts`, `functions/api/auth/sessions/revoke.ts`, `functions/api/auth/account.ts`, `functions/api/settings.ts`, `public/_redirects`, `src/components/ResetPasswordScreen.tsx`, `src/lib/settings.ts`, `src/sections/SettingsSection.tsx`, `src/sections/InfoSection.tsx`.
@@ -148,20 +148,23 @@ Harness: `/tmp/ielts-render-check/render-platform.js` (mocked API, built bundle,
 
 ## 5. What was NOT verified (honest gaps)
 
-1. **Real email delivery** — no Resend key exists yet, so no real reset email has ever been sent or received. The full happy path (request → inbox → click link → reset) needs the key (§6) and one live test after deployment.
+1. **Real email delivery** — no Gmail credentials exist yet, so no real reset email has ever been sent or received. The full happy path (request → inbox → click link → reset) needs the three secrets (§6) and one live test after deployment.
 2. **True-browser visual check** — the new pages were verified in jsdom (DOM/behavior/content), not in a real browser at 390px. The Nord pages got real screenshots; the Settings/Info/Auth pages have not. Recommend a Playwright screenshot pass after deployment (the relay + scripts in `~/workspace/ielts-screenshots/` already exist).
 3. **On-device check** — as always, the user's phone is the final check, especially the new AuthScreen and Settings pages.
 4. **Production migration** — 0002 has only run on local D1. The production backup + apply + live-login verification is the parent's next step (see §7).
 
 ---
 
-## 6. What the user still owes (Resend setup)
+## 6. What the user still owes (Gmail API setup)
 
-1. Create a free Resend account at https://resend.com (free tier: 100 emails/day).
-2. Create an API key in the Resend dashboard and provide it **via the secure credential interface only — never in chat**.
-3. The parent stores it as a Pages secret: `RESEND_API_KEY` (via `wrangler pages secret put`, same as `SESSION_SECRET`). Optional: `RESEND_FROM` to set a custom sender; the default is Resend's onboarding sender `IELTS 60-Day App <onboarding@resend.dev>`.
-4. **Limitation to tell the user:** without a verified custom domain, Resend's onboarding sender can only send to the Resend account owner's own email address. That covers the app's current users (both accounts are his), but it is not a general solution — if other people ever register, a verified domain is needed for their reset emails.
-5. Until the key is set, forgot-password stays in its honest fail-closed state (503 + clear message); every other feature works without it.
+**Update (22 Nov, after this report): the email service was switched from Resend to the Gmail API** — free, no custom domain needed, and reset emails can go to any address (not just the account owner's). The code now reads three Gmail secrets from env and fails closed without them.
+
+1. Google Cloud project "IELTS 60 DAYS" is created with the Gmail API enabled, an Internal OAuth app, and the `gmail.send` scope only (done by the user on 22 Nov).
+2. The user obtains a refresh token via the OAuth 2.0 Playground (Web-application OAuth client, redirect URI `https://developers.google.com/oauthplayground`) and keeps the Client ID + Client Secret + refresh token.
+3. The user sets all three as Pages secrets in the Cloudflare dashboard (Settings → Environment variables → Production, type Secret): `GMAIL_CLIENT_ID`, `GMAIL_CLIENT_SECRET`, `GMAIL_REFRESH_TOKEN`. Then a redeploy activates them (secret changes apply on the next deployment).
+4. Until the secrets are set, forgot-password stays in its honest fail-closed state (503 + clear message); every other feature works without it.
+
+**Update (23 Nov 00:52): COMPLETED.** The user paused the route at 00:35, then asked at 00:40 to finish it at once. The app was made External and Published (In production; Internal had blocked his personal Gmail with Error 403 org_internal), a new client secret + refresh token were obtained via the Playground, and all four secrets were set as Pages secrets. One live bug was found and fixed: the gmail.send scope does not cover users.getProfile, so the sender address now comes from the `GMAIL_SENDER` env var (no profile call). Live test passed: forgot-password for alivrohan → HTTP 200 with 1 live token row in D1 (deployment ee76b9ff). Manual admin reset (README) remains as a fallback.
 
 ---
 
@@ -172,7 +175,7 @@ Harness: `/tmp/ielts-render-check/render-platform.js` (mocked API, built bundle,
 3. Verify live: both existing users (`alivrohan@gmail.com`, `sellcoc505@gmail.com`) can still log in; their progress/block times are intact; `me` returns `full_name: null` for them.
 4. Deploy the new build (`wrangler pages deploy dist`).
 5. Live E2E: register/login, settings save, sessions list, change password, delete-account on a throwaway account, then delete the throwaway.
-6. Set `RESEND_API_KEY` once the user provides it; test one real reset email to his own address.
+6. Set the three Gmail secrets once the user provides them; test one real reset email to his own address.
 7. Screenshot pass (both themes, new pages) + GitHub sync push (this diff + the earlier uncommitted redesign/header/Nord changes) — only with the user's approval, one push, while present.
 
 ---

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { api, ApiError, type MeResponse } from './lib/api';
 import { progressKey } from './lib/format';
 import { SECTIONS, type SectionId } from './lib/sections';
@@ -59,9 +59,6 @@ export default function App() {
   const [saveError, setSaveError] = useState('');
   const [resetToken, setResetToken] = useState<string | null>(resetTokenFromUrl);
   const [guestInfo, setGuestInfo] = useState<LegalPageId | null>(null);
-  // Whether a theme pref existed before this session — decides if the
-  // server-side appearance may apply on first login (local choice wins).
-  const hadSavedPref = useRef(localStorage.getItem('ielts-theme') !== null);
 
   useEffect(() => {
     const resolved = resolvePref(pref);
@@ -85,11 +82,11 @@ export default function App() {
       setBlockTimes(b.blockTimes);
       const resolved = resolveSettings(s.settings);
       setSettings(resolved);
-      // First login with no local pref: adopt the synced appearance.
-      if (!hadSavedPref.current && s.settings.appearance) {
+      // A stored server preference wins over the local cache; without one,
+      // the local choice (or the system default) stands.
+      if (s.settings.appearance) {
         setPref(s.settings.appearance);
       }
-      hadSavedPref.current = true;
       setApiDown(false);
       setSaveError('');
     } catch (err) {
@@ -140,15 +137,21 @@ export default function App() {
     [selectSection],
   );
 
-  const toggleTheme = useCallback(() => {
-    // Quick toggle = explicit light/dark (System Default lives in Settings).
-    setPref(theme === 'light' ? 'dark' : 'light');
-  }, [theme]);
-
   const saveSettings = useCallback(async (patch: UserSettings) => {
     const res = await api.saveSettings(patch);
     setSettings(resolveSettings(res.settings));
   }, []);
+
+  const toggleTheme = useCallback(() => {
+    // Quick toggle = explicit light/dark (System Default lives in Settings).
+    // Apply instantly, then persist to the server so every device agrees;
+    // a failed persist never blocks the toggle.
+    const next = theme === 'light' ? 'dark' : 'light';
+    setPref(next);
+    if (auth === 'authed') {
+      void saveSettings({ appearance: next }).catch(() => {});
+    }
+  }, [theme, auth, saveSettings]);
 
   const changeAppearance = useCallback(
     async (next: ThemePref) => {
@@ -337,6 +340,7 @@ export default function App() {
           <SettingsSection
             me={me}
             settings={settings}
+            appearance={pref}
             onProfileUpdated={(fullName) => setMe((m) => (m ? { ...m, full_name: fullName } : m))}
             onAppearanceChange={changeAppearance}
             onSettingsSaved={saveSettings}

@@ -160,6 +160,44 @@ To disable open registration on a private deployment, set the
 (Settings → Environment variables) or in `wrangler.toml` `[vars]`.
 Existing users can still log in.
 
+## Password-reset emails (Gmail API)
+
+Forgot-password emails are sent through the Gmail API (free, no custom
+domain needed, reset emails can go to any address). Setup, once:
+
+1. In Google Cloud Console, create a project and enable the **Gmail API**.
+2. Configure the OAuth consent screen as an **External** app in
+   production (only the project owner ever authorizes sending;
+   recipients can be anyone) and add the single scope
+   `https://www.googleapis.com/auth/gmail.send`. (An Internal app does
+   NOT work: it blocks personal Gmail accounts with Error 403
+   org_internal.)
+3. Create an OAuth client (Web application, with
+   `https://developers.google.com/oauthplayground` as an authorized
+   redirect URI) and use the OAuth 2.0 Playground to obtain a refresh
+   token for the sending Google account.
+4. Set the four secrets in the Cloudflare Pages dashboard
+   (Settings → Environment variables → Production, type Secret):
+   `GMAIL_CLIENT_ID`, `GMAIL_CLIENT_SECRET`, `GMAIL_REFRESH_TOKEN`,
+   `GMAIL_SENDER` (the sending Gmail address — the gmail.send scope
+   does not cover the profile lookup, so the sender is configured).
+   Then redeploy — secret changes apply on the next deployment.
+
+Until all four secrets are set, `POST /api/auth/forgot-password` fails
+closed with a 503 and a clear message instead of pretending an email
+was sent.
+
+## Password reset without email (manual fallback)
+
+If email reset ever fails, a forgotten password can still be reset by
+hand: the user emails asmitsr.official@gmail.com, and the admin sets a
+temporary password directly in D1 —
+hash it with PBKDF2-HMAC-SHA256, 100,000 iterations, against the user's
+existing salt, `UPDATE users SET password_hash = ? WHERE email = ?`,
+then `DELETE FROM sessions WHERE user_id = ?` so old sessions stop
+working. The user logs in with the temporary password and changes it
+in Settings → Security → Change Password.
+
 ## Backup & restore (D1)
 
 ```bash

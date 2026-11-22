@@ -19,12 +19,12 @@ export async function onRequestPost({ request, env }: FunctionContext) {
   const email = typeof body?.email === 'string' ? body.email.trim().toLowerCase() : '';
   if (!validEmail(email)) return json({ ok: true });
 
-  // Fail closed: without a Resend key no email can be sent, so say so
-  // plainly instead of pretending a reset link is on its way.
-  const apiKey = env.RESEND_API_KEY;
-  if (!apiKey) {
+  // Fail closed: without Gmail credentials no email can be sent, so say
+  // so plainly instead of pretending a reset link is on its way.
+  const { GMAIL_CLIENT_ID: clientId, GMAIL_CLIENT_SECRET: clientSecret, GMAIL_REFRESH_TOKEN: refreshToken, GMAIL_SENDER: sender } = env;
+  if (!clientId || !clientSecret || !refreshToken || !sender) {
     return json(
-      { error: 'Password reset is not set up yet — the email service is not configured. Try again later.' },
+      { error: 'ইমেইল দিয়ে রিসেট এখনো চালু হয়নি। পাসওয়ার্ড রিসেট করতে asmitsr.official@gmail.com-এ মেইল করো।' },
       503,
     );
   }
@@ -46,24 +46,11 @@ export async function onRequestPost({ request, env }: FunctionContext) {
     .run();
   const resetId = res.meta?.last_row_id;
   const resetUrl = `${new URL(request.url).origin}/reset-password?token=${encodeURIComponent(token)}`;
-  const from = env.RESEND_FROM ?? 'IELTS 60-Day App <onboarding@resend.dev>';
   let sent = false;
   try {
-    const r = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        from,
-        to: email,
-        subject: 'Reset your IELTS 60-Day App password',
-        html: `<p>You asked to reset your IELTS 60-Day App password. Click the link below — it works once and expires in 1 hour.</p><p><a href="${resetUrl}">Reset my password</a></p><p>If you did not ask for this, ignore this email. Your password stays unchanged.</p>`,
-        text: `You asked to reset your IELTS 60-Day App password. Open this link (works once, expires in 1 hour): ${resetUrl}\n\nIf you did not ask for this, ignore this email. Your password stays unchanged.`,
-      }),
-    });
-    sent = r.ok;
-    if (!r.ok) console.error('Resend error', r.status, await r.text().catch(() => ''));
+    sent = await sendResetEmail(clientId, clientSecret, refreshToken, sender, email, resetUrl);
   } catch (err) {
-    console.error('Resend request failed', err);
+    console.error('Gmail send failed', err);
   }
   if (!sent) {
     // The email never left: remove the token so a stale row cannot linger.
@@ -73,4 +60,53 @@ export async function onRequestPost({ request, env }: FunctionContext) {
     return json({ error: 'Could not send the reset email. Try again later.' }, 503);
   }
   return json({ ok: true });
+}
+
+// Sends the reset email via the Gmail API: refresh token -> access token,
+// then messages.send with a base64url-encoded RFC 822 message. Stateless —
+// the token is exchanged on every request, nothing is cached.
+// NOTE: the gmail.send scope does NOT cover users.getProfile, so the sender
+// address comes from the GMAIL_SENDER env var instead of a profile lookup.
+async function sendResetEmail(
+  clientId: string,
+  clientSecret: string,
+  refreshToken: string,
+  sender: string,
+  to: string,
+  resetUrl: string,
+): Promise<boolean> {
+  const tokenRes = await fetch('https://oauth2.googleapis.com/token', {
+    method: 'POST',
+    headers: { 'content-type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({
+      grant_type: 'refresh_token',
+      client_id: clientId,
+      client_secret: clientSecret,
+      refresh_token: refreshToken,
+    }),
+  });
+  if (!tokenRes.ok) {
+    console.error('Gmail token exchange failed', tokenRes.status);
+    return false;
+  }
+  const { access_token } = (await tokenRes.json()) as { access_token?: string };
+  if (!access_token) return false;
+  const auth = { Authorization: `Bearer ${access_token}` };
+  const raw = [
+    `To: ${to}`,
+    `From: IELTS 60-Day App <${sender}>`,
+    'Subject: Reset your IELTS 60-Day App password',
+    'Content-Type: text/plain; charset=UTF-8',
+    '',
+    `You asked to reset your IELTS 60-Day App password. Open this link (works once, expires in 1 hour): ${resetUrl}`,
+    '',
+    'If you did not ask for this, ignore this email. Your password stays unchanged.',
+  ].join('\r\n');
+  const sendRes = await fetch('https://gmail.googleapis.com/gmail/v1/users/me/messages/send', {
+    method: 'POST',
+    headers: { ...auth, 'content-type': 'application/json' },
+    body: JSON.stringify({ raw: b64url(new TextEncoder().encode(raw)) }),
+  });
+  if (!sendRes.ok) console.error('Gmail send failed', sendRes.status, await sendRes.text().catch(() => ''));
+  return sendRes.ok;
 }

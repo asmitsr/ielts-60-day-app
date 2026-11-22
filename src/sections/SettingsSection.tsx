@@ -74,6 +74,7 @@ function Toggle({
 export function SettingsSection({
   me,
   settings,
+  appearance,
   onProfileUpdated,
   onAppearanceChange,
   onSettingsSaved,
@@ -83,6 +84,9 @@ export function SettingsSection({
 }: {
   me: MeResponse;
   settings: ResolvedSettings;
+  // The effective theme preference (App state) — the checkmark must show
+  // what is actually applied, not the last synced server value.
+  appearance: ThemePref;
   onProfileUpdated: (fullName: string | null) => void;
   onAppearanceChange: (pref: ThemePref) => Promise<void>;
   onSettingsSaved: (patch: UserSettings) => Promise<void>;
@@ -95,7 +99,7 @@ export function SettingsSection({
 
   if (page === 'profile') return <ProfilePage me={me} onBack={back} onSaved={onProfileUpdated} />;
   if (page === 'appearance') {
-    return <AppearancePage current={settings.appearance} onBack={back} onSelect={onAppearanceChange} />;
+    return <AppearancePage current={appearance} onBack={back} onSelect={onAppearanceChange} />;
   }
   if (page === 'security') return <SecurityPage onBack={back} onLogout={onLogout} />;
   if (page === 'notifications') {

@@ -43,6 +43,7 @@ async function call<T>(path: string, init?: RequestInit): Promise<T> {
 
 export const api = {
   me: () => call<MeResponse>('/api/auth/me'),
+  getConfig: () => call<{ registrationOpen: boolean }>('/api/config'),
   register: (
     email: string,
     password: string,

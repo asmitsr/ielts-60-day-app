@@ -18,8 +18,10 @@ export interface Env {
   DB: D1Database;
   SESSION_SECRET?: string;
   ALLOW_REGISTRATION?: string;
-  RESEND_API_KEY?: string;
-  RESEND_FROM?: string;
+  GMAIL_CLIENT_ID?: string;
+  GMAIL_CLIENT_SECRET?: string;
+  GMAIL_REFRESH_TOKEN?: string;
+  GMAIL_SENDER?: string;
 }
 export interface AuthedUser {
   id: number;
