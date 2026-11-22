@@ -5,7 +5,7 @@ pages_build_output_dir = "dist"
 # Plain (non-secret) variables. Secrets go via `wrangler pages secret put`.
 [vars]
 # Set to "false" to disable open registration (private deployment).
-ALLOW_REGISTRATION = "true"
+ALLOW_REGISTRATION = "false"
 
 [[d1_databases]]
 binding = "DB"

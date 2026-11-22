@@ -18,10 +18,14 @@ export interface Env {
   DB: D1Database;
   SESSION_SECRET?: string;
   ALLOW_REGISTRATION?: string;
+  RESEND_API_KEY?: string;
+  RESEND_FROM?: string;
 }
 export interface AuthedUser {
   id: number;
   email: string;
+  fullName: string | null;
+  createdAt: string;
 }
 export interface FunctionContext {
   request: Request;
@@ -32,7 +36,9 @@ export interface FunctionContext {
 // (above that, deriveBits throws NotSupportedError and the Function
 // crashes with error 1101). 100,000 is the Workers maximum.
 const PBKDF2_ITERATIONS = 100000;
-const SESSION_MAX_AGE_S = 30 * 24 * 3600; // 30 days
+export const SESSION_MAX_AGE_S = 30 * 24 * 3600; // 30 days (remembered)
+export const SHORT_SESSION_MAX_AGE_S = 12 * 3600; // 12 hours (not remembered)
+export const RESET_TOKEN_TTL_S = 3600; // 1 hour
 
 export function json(data: unknown, status = 200, headers: Record<string, string> = {}): Response {
   return new Response(JSON.stringify(data), {
@@ -53,6 +59,17 @@ export function randomBytes(n: number): Uint8Array {
   const b = new Uint8Array(n);
   crypto.getRandomValues(b);
   return b;
+}
+
+// SHA-256 hex digest — used for password-reset tokens so the database
+// never holds a usable token (a leaked DB cannot reset passwords).
+export async function sha256Hex(data: string): Promise<string> {
+  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(data));
+  return hex(new Uint8Array(digest));
+}
+
+export function isoNow(): string {
+  return new Date().toISOString();
 }
 
 export async function hashPassword(password: string, saltHex: string): Promise<string> {
@@ -78,22 +95,32 @@ async function hmac(secret: string, data: string): Promise<string> {
   return b64url(new Uint8Array(sig));
 }
 
-function cookieAttrs(secure: boolean, maxAge: number): string {
-  return `Path=/; HttpOnly; SameSite=Lax; Max-Age=${maxAge}${secure ? '; Secure' : ''}`;
+function cookieAttrs(secure: boolean, maxAge: number | null): string {
+  // maxAge null = no Max-Age attribute: a session cookie that ends when
+  // the browser closes (used for "don't remember me" logins).
+  return `Path=/; HttpOnly; SameSite=Lax${maxAge === null ? '' : `; Max-Age=${maxAge}`}${secure ? '; Secure' : ''}`;
 }
 
 // Session cookie value is `<id>.<HMAC(id, SESSION_SECRET)>`; the row in the
 // sessions table is what makes logout/revocation possible.
-export async function createSession(env: Env, userId: number, secure: boolean): Promise<string> {
+export async function createSession(
+  env: Env,
+  userId: number,
+  secure: boolean,
+  opts: { maxAgeS?: number; userAgent?: string | null } = {},
+): Promise<string> {
   const secret = env.SESSION_SECRET;
   if (!secret) throw new Error('SESSION_SECRET is not configured');
+  const maxAgeS = opts.maxAgeS ?? SESSION_MAX_AGE_S;
   const id = hex(randomBytes(24));
   const sig = await hmac(secret, id);
-  const expiresAt = Math.floor(Date.now() / 1000) + SESSION_MAX_AGE_S;
-  await env.DB.prepare('INSERT INTO sessions (id, user_id, expires_at) VALUES (?, ?, ?)')
-    .bind(id, userId, expiresAt)
+  const expiresAt = Math.floor(Date.now() / 1000) + maxAgeS;
+  await env.DB.prepare('INSERT INTO sessions (id, user_id, expires_at, user_agent) VALUES (?, ?, ?, ?)')
+    .bind(id, userId, expiresAt, opts.userAgent ?? null)
     .run();
-  return `session=${id}.${sig}; ${cookieAttrs(secure, SESSION_MAX_AGE_S)}`;
+  // Remembered sessions get Max-Age; short sessions are browser-session
+  // cookies (no Max-Age) with a 12-hour DB expiry as the backstop.
+  return `session=${id}.${sig}; ${cookieAttrs(secure, maxAgeS >= SESSION_MAX_AGE_S ? maxAgeS : null)}`;
 }
 
 export function clearSessionCookie(secure: boolean): string {
@@ -113,11 +140,11 @@ export async function getSessionUser(request: Request, env: Env): Promise<Authed
   if (!id || !sig) return null;
   if (sig !== (await hmac(secret, id))) return null;
   const row = await env.DB.prepare(
-    'SELECT u.id AS id, u.email AS email FROM sessions s JOIN users u ON u.id = s.user_id WHERE s.id = ? AND s.expires_at > ?',
+    'SELECT u.id AS id, u.email AS email, u.full_name AS full_name, u.created_at AS created_at FROM sessions s JOIN users u ON u.id = s.user_id WHERE s.id = ? AND s.expires_at > ?',
   )
     .bind(id, Math.floor(Date.now() / 1000))
-    .first<{ id: number; email: string }>();
-  return row ? { id: row.id, email: row.email } : null;
+    .first<{ id: number; email: string; full_name: string | null; created_at: string }>();
+  return row ? { id: row.id, email: row.email, fullName: row.full_name, createdAt: row.created_at } : null;
 }
 
 export function sessionIdFrom(request: Request): string | null {

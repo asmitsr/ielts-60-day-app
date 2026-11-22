@@ -24,7 +24,7 @@ export function ProgressHero({
             cy="52"
             r={r}
             fill="none"
-            stroke="#fff"
+            stroke="#88c0d0"
             strokeWidth="10"
             strokeLinecap="round"
             strokeDasharray={c}

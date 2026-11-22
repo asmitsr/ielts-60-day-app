@@ -7,11 +7,19 @@ export function MoreSheet({
   active,
   onClose,
   onSelect,
+  theme,
+  onToggleTheme,
+  email,
+  onLogout,
 }: {
   open: boolean;
   active: SectionId;
   onClose: () => void;
   onSelect: (s: SectionId) => void;
+  theme: 'light' | 'dark';
+  onToggleTheme: () => void;
+  email: string;
+  onLogout: () => void;
 }) {
   useEffect(() => {
     if (!open) return;
@@ -43,6 +51,18 @@ export function MoreSheet({
             </span>
           </button>
         ))}
+        <hr className="divider" />
+        <button type="button" className="sheet-row" onClick={onToggleTheme}>
+          <Icon name={theme === 'light' ? 'moon' : 'sun'} size={22} />
+          <span>{theme === 'light' ? 'Dark mode' : 'Light mode'}</span>
+        </button>
+        <button type="button" className="sheet-row" onClick={onLogout}>
+          <Icon name="logout" size={22} />
+          <span>
+            লগআউট
+            <small>{email}</small>
+          </span>
+        </button>
         <button type="button" className="sheet-row" onClick={onClose}>
           <Icon name="close" size={22} />
           <span>বন্ধ করো</span>

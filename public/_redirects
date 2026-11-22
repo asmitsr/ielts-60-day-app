@@ -1,0 +1,3 @@
+# Password-reset links from email land here; serve the SPA so the app can
+# read the ?token= query param. /api/* is untouched (Functions routes).
+/reset-password /index.html 200

@@ -1,5 +1,6 @@
 import {
   FunctionContext,
+  SHORT_SESSION_MAX_AGE_S,
   createSession,
   hashPassword,
   isHttps,
@@ -13,6 +14,9 @@ export async function onRequestPost({ request, env }: FunctionContext) {
   const body = await readJson(request);
   const email = typeof body?.email === 'string' ? body.email.trim().toLowerCase() : '';
   const password = typeof body?.password === 'string' ? body.password : '';
+  // remember=true (default) = 30-day session; remember=false = session
+  // cookie + 12-hour DB expiry.
+  const remember = body?.remember !== false;
   if (!email || !password) return json({ error: INVALID }, 401);
   if (!env.SESSION_SECRET) {
     return json({ error: 'Server is not configured (SESSION_SECRET missing).' }, 500);
@@ -28,6 +32,9 @@ export async function onRequestPost({ request, env }: FunctionContext) {
   if ((await hashPassword(password, user.salt)) !== user.password_hash) {
     return json({ error: INVALID }, 401);
   }
-  const cookie = await createSession(env, user.id, isHttps(request));
+  const cookie = await createSession(env, user.id, isHttps(request), {
+    maxAgeS: remember ? undefined : SHORT_SESSION_MAX_AGE_S,
+    userAgent: request.headers.get('user-agent'),
+  });
   return json({ email: user.email }, 200, { 'set-cookie': cookie });
 }

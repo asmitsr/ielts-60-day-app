@@ -1,9 +1,17 @@
-import { useCallback, useEffect, useState } from 'react';
-import { api, ApiError } from './lib/api';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { api, ApiError, type MeResponse } from './lib/api';
 import { progressKey } from './lib/format';
 import { SECTIONS, type SectionId } from './lib/sections';
+import {
+  DEFAULT_SETTINGS,
+  resolveSettings,
+  type ResolvedSettings,
+  type ThemePref,
+  type UserSettings,
+} from './lib/settings';
 import { Icon } from './lib/icons';
-import { AuthScreen } from './components/AuthScreen';
+import { AuthScreen, type LegalPageId } from './components/AuthScreen';
+import { ResetPasswordScreen } from './components/ResetPasswordScreen';
 import { BottomNav } from './components/BottomNav';
 import { MoreSheet } from './components/MoreSheet';
 import { PlanSection } from './sections/PlanSection';
@@ -13,39 +21,75 @@ import { ResourcesSection } from './sections/ResourcesSection';
 import { FormatSection } from './sections/FormatSection';
 import { CueCardsSection } from './sections/CueCardsSection';
 import { TechniquesSection } from './sections/TechniquesSection';
+import { SettingsSection } from './sections/SettingsSection';
+import { InfoSection, type InfoPageId } from './sections/InfoSection';
 import './theme.css';
 
 type Theme = 'light' | 'dark';
 type AuthState = 'loading' | 'authed' | 'guest';
 
-function initialTheme(): Theme {
-  // Theme preference only (UI choice). Progress data is NEVER in localStorage.
+function initialThemePref(): ThemePref {
   const saved = localStorage.getItem('ielts-theme');
-  if (saved === 'light' || saved === 'dark') return saved;
+  if (saved === 'light' || saved === 'dark' || saved === 'system') return saved;
+  return 'system'; // same as the old default: follow the OS theme
+}
+
+function resolvePref(pref: ThemePref): Theme {
+  if (pref !== 'system') return pref;
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
+function resetTokenFromUrl(): string | null {
+  if (window.location.pathname !== '/reset-password') return null;
+  return new URLSearchParams(window.location.search).get('token');
+}
+
 export default function App() {
-  const [theme, setTheme] = useState<Theme>(initialTheme);
+  const [pref, setPref] = useState<ThemePref>(initialThemePref);
+  const [theme, setTheme] = useState<Theme>(() => resolvePref(initialThemePref()));
   const [auth, setAuth] = useState<AuthState>('loading');
-  const [email, setEmail] = useState('');
+  const [me, setMe] = useState<MeResponse | null>(null);
   const [section, setSection] = useState<SectionId>('plan');
+  const [infoPage, setInfoPage] = useState<InfoPageId | undefined>(undefined);
   const [moreOpen, setMoreOpen] = useState(false);
   const [progress, setProgress] = useState<Record<string, true>>({});
   const [blockTimes, setBlockTimes] = useState<Record<string, string>>({});
+  const [settings, setSettings] = useState<ResolvedSettings>(DEFAULT_SETTINGS);
   const [apiDown, setApiDown] = useState(false);
   const [saveError, setSaveError] = useState('');
+  const [resetToken, setResetToken] = useState<string | null>(resetTokenFromUrl);
+  const [guestInfo, setGuestInfo] = useState<LegalPageId | null>(null);
+  // Whether a theme pref existed before this session — decides if the
+  // server-side appearance may apply on first login (local choice wins).
+  const hadSavedPref = useRef(localStorage.getItem('ielts-theme') !== null);
 
   useEffect(() => {
-    document.documentElement.dataset.theme = theme;
-    localStorage.setItem('ielts-theme', theme);
-  }, [theme]);
+    const resolved = resolvePref(pref);
+    setTheme(resolved);
+    document.documentElement.dataset.theme = resolved;
+    localStorage.setItem('ielts-theme', pref);
+  }, [pref]);
+
+  useEffect(() => {
+    if (pref !== 'system') return;
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    const onChange = () => setTheme(mq.matches ? 'dark' : 'light');
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, [pref]);
 
   const loadData = useCallback(async () => {
     try {
-      const [p, b] = await Promise.all([api.getProgress(), api.getBlockTimes()]);
+      const [p, b, s] = await Promise.all([api.getProgress(), api.getBlockTimes(), api.getSettings()]);
       setProgress(p.progress);
       setBlockTimes(b.blockTimes);
+      const resolved = resolveSettings(s.settings);
+      setSettings(resolved);
+      // First login with no local pref: adopt the synced appearance.
+      if (!hadSavedPref.current && s.settings.appearance) {
+        setPref(s.settings.appearance);
+      }
+      hadSavedPref.current = true;
       setApiDown(false);
       setSaveError('');
     } catch (err) {
@@ -58,10 +102,15 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    // The reset link is usable without a session; don't probe /me first.
+    if (resetToken) {
+      setAuth('guest');
+      return;
+    }
     api
       .me()
       .then((res) => {
-        setEmail(res.email);
+        setMe(res);
         setAuth('authed');
         void loadData();
       })
@@ -73,14 +122,41 @@ export default function App() {
           setApiDown(true);
         }
       });
-  }, [loadData]);
+  }, [loadData, resetToken]);
 
   const selectSection = useCallback((s: SectionId) => {
     setSection(s);
     setMoreOpen(false);
+    if (s !== 'info') setInfoPage(undefined);
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
   }, []);
+
+  const showInfo = useCallback(
+    (page: InfoPageId) => {
+      setInfoPage(page);
+      selectSection('info');
+    },
+    [selectSection],
+  );
+
+  const toggleTheme = useCallback(() => {
+    // Quick toggle = explicit light/dark (System Default lives in Settings).
+    setPref(theme === 'light' ? 'dark' : 'light');
+  }, [theme]);
+
+  const saveSettings = useCallback(async (patch: UserSettings) => {
+    const res = await api.saveSettings(patch);
+    setSettings(resolveSettings(res.settings));
+  }, []);
+
+  const changeAppearance = useCallback(
+    async (next: ThemePref) => {
+      setPref(next); // apply instantly, even if the sync below fails
+      await saveSettings({ appearance: next });
+    },
+    [saveSettings],
+  );
 
   async function toggleTask(day: number, taskIndex: number, done: boolean) {
     const key = progressKey(day, taskIndex);
@@ -114,17 +190,28 @@ export default function App() {
     }
   }
 
+  function clearLocalSession() {
+    setAuth('guest');
+    setMe(null);
+    setProgress({});
+    setBlockTimes({});
+    setSettings(DEFAULT_SETTINGS);
+    setSection('plan');
+    setInfoPage(undefined);
+  }
+
   async function logout() {
     try {
       await api.logout();
     } catch {
       // Even if the request fails, drop the local session view.
     }
-    setAuth('guest');
-    setEmail('');
-    setProgress({});
-    setBlockTimes({});
-    setSection('plan');
+    clearLocalSession();
+  }
+
+  function exitReset() {
+    window.history.replaceState('/', '');
+    setResetToken(null);
   }
 
   if (auth === 'loading') {
@@ -135,6 +222,20 @@ export default function App() {
     );
   }
   if (auth === 'guest') {
+    if (resetToken) {
+      return (
+        <div className="app">
+          <ResetPasswordScreen token={resetToken} onDone={exitReset} />
+        </div>
+      );
+    }
+    if (guestInfo) {
+      return (
+        <div className="app">
+          <InfoSection initialPage={guestInfo} onBack={() => setGuestInfo(null)} />
+        </div>
+      );
+    }
     return (
       <div className="app">
         {apiDown && (
@@ -144,12 +245,19 @@ export default function App() {
           </div>
         )}
         <AuthScreen
-          onAuthed={(mail) => {
-            setEmail(mail);
-            setAuth('authed');
-            setApiDown(false);
-            void loadData();
+          onAuthed={() => {
+            // Re-read /me so full_name + created_at are available.
+            api
+              .me()
+              .then((res) => {
+                setMe(res);
+                setAuth('authed');
+                setApiDown(false);
+                void loadData();
+              })
+              .catch(() => setAuth('guest'));
           }}
+          onShowLegal={(page) => setGuestInfo(page)}
         />
       </div>
     );
@@ -157,31 +265,6 @@ export default function App() {
 
   return (
     <div className="app">
-      <header className="topbar">
-        <h1>IELTS 60-Day App</h1>
-        <span className="account">
-          <span>{email}</span>
-          <button
-            type="button"
-            className="icon-btn"
-            style={{ width: 32, height: 32 }}
-            onClick={logout}
-            aria-label="লগআউট"
-            title="লগআউট"
-          >
-            <Icon name="logout" size={16} />
-          </button>
-        </span>
-        <button
-          type="button"
-          className="icon-btn"
-          onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-          aria-label={theme === 'light' ? 'Dark mode' : 'Light mode'}
-        >
-          <Icon name={theme === 'light' ? 'moon' : 'sun'} size={19} />
-        </button>
-      </header>
-
       <nav className="pillbar" aria-label="সেকশন">
         {SECTIONS.map((s) => (
           <button
@@ -195,6 +278,29 @@ export default function App() {
             {s.label}
           </button>
         ))}
+        <span className="pillbar-actions">
+          <span className="account">
+            <span>{me?.email}</span>
+            <button
+              type="button"
+              className="icon-btn"
+              style={{ width: 32, height: 32 }}
+              onClick={logout}
+              aria-label="লগআউট"
+              title="লগআউট"
+            >
+              <Icon name="logout" size={16} />
+            </button>
+          </span>
+          <button
+            type="button"
+            className="icon-btn"
+            onClick={toggleTheme}
+            aria-label={theme === 'light' ? 'Dark mode' : 'Light mode'}
+          >
+            <Icon name={theme === 'light' ? 'moon' : 'sun'} size={19} />
+          </button>
+        </span>
       </nav>
 
       {(apiDown || saveError) && (
@@ -217,6 +323,8 @@ export default function App() {
             onToggleTask={toggleTask}
             onSaveBlockTime={saveBlockTime}
             apiDown={apiDown}
+            autoExpandToday={settings.study.autoExpandToday}
+            notifications={settings.notifications}
           />
         )}
         {section === 'steps' && <StepsSection />}
@@ -225,10 +333,32 @@ export default function App() {
         {section === 'format' && <FormatSection />}
         {section === 'cuecards' && <CueCardsSection />}
         {section === 'techniques' && <TechniquesSection />}
+        {section === 'settings' && me && (
+          <SettingsSection
+            me={me}
+            settings={settings}
+            onProfileUpdated={(fullName) => setMe((m) => (m ? { ...m, full_name: fullName } : m))}
+            onAppearanceChange={changeAppearance}
+            onSettingsSaved={saveSettings}
+            onLogout={logout}
+            onAccountDeleted={clearLocalSession}
+            onShowInfo={showInfo}
+          />
+        )}
+        {section === 'info' && <InfoSection key={infoPage ?? 'list'} initialPage={infoPage} />}
       </main>
 
       <BottomNav section={section} onSelect={selectSection} onMore={() => setMoreOpen(true)} />
-      <MoreSheet open={moreOpen} active={section} onClose={() => setMoreOpen(false)} onSelect={selectSection} />
+      <MoreSheet
+        open={moreOpen}
+        active={section}
+        onClose={() => setMoreOpen(false)}
+        onSelect={selectSection}
+        theme={theme}
+        onToggleTheme={toggleTheme}
+        email={me?.email ?? ''}
+        onLogout={logout}
+      />
     </div>
   );
 }

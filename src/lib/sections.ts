@@ -1,6 +1,15 @@
 import type { IconName } from './icons';
 
-export type SectionId = 'plan' | 'steps' | 'practice' | 'resources' | 'format' | 'cuecards' | 'techniques';
+export type SectionId =
+  | 'plan'
+  | 'steps'
+  | 'practice'
+  | 'resources'
+  | 'format'
+  | 'cuecards'
+  | 'techniques'
+  | 'settings'
+  | 'info';
 
 export interface SectionMeta {
   id: SectionId;
@@ -17,6 +26,8 @@ export const SECTIONS: SectionMeta[] = [
   { id: 'format', label: 'পরীক্ষার ফরম্যাট', icon: 'doc', blurb: '4 module, সময়, স্কোরিং' },
   { id: 'cuecards', label: 'কিউ কার্ড', icon: 'chat', blurb: '148টি Makkar cue card' },
   { id: 'techniques', label: 'টেকনিক', icon: 'bulb', blurb: '12টি টেকনিক, module অনুযায়ী' },
+  { id: 'settings', label: 'সেটিংস', icon: 'gear', blurb: 'প্রোফাইল, নিরাপত্তা, নোটিফিকেশন' },
+  { id: 'info', label: 'তথ্য ও আইনি', icon: 'info', blurb: 'Privacy, Terms, FAQ, সোর্স' },
 ];
 
 // Bottom bar shows the first four; the rest live in the "আরও" sheet.
