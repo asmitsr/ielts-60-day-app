@@ -1,0 +1,3024 @@
+{
+ "title": "IELTS 60-Day Tracker",
+ "target": "Band 7.5+",
+ "day1": "2026-11-23",
+ "day60": "2027-01-21",
+ "daily_minutes": 360,
+ "daily_structure": [
+  {
+   "module": "Listening",
+   "bn": "লিসেনিং",
+   "minutes": 120
+  },
+  {
+   "module": "Reading",
+   "bn": "রিডিং",
+   "minutes": 120
+  },
+  {
+   "module": "Writing",
+   "bn": "রাইটিং",
+   "minutes": 90
+  },
+  {
+   "module": "Speaking",
+   "bn": "স্পিকিং",
+   "minutes": 30
+  }
+ ],
+ "window": {
+  "wake": "05:00",
+  "wake_latest": "05:30",
+  "sleep": "23:30",
+  "sleep_latest": "24:00"
+ },
+ "full_mock_days": [
+  7,
+  14,
+  21,
+  28,
+  35,
+  42,
+  49,
+  56
+ ],
+ "phases": [
+  {
+   "phase": 1,
+   "name": "Foundation",
+   "bn": "ফাউন্ডেশন",
+   "from": 1,
+   "to": 15,
+   "desc": "বেসিক তৈরি — Grammar, Reading অভ্যাস, Listening, Speaking-এর ভিত্তি।"
+  },
+  {
+   "phase": 2,
+   "name": "Module-Specific",
+   "bn": "মডিউল-ভিত্তিক",
+   "from": 16,
+   "to": 29,
+   "desc": "প্রতিটা module-এর question type ধরে ধরে শেখা + mini mock।"
+  },
+  {
+   "phase": 3,
+   "name": "Mocks + Analysis",
+   "bn": "মক + বিশ্লেষণ",
+   "from": 30,
+   "to": 46,
+   "desc": "Full mock দাও, ভুল বিশ্লেষণ করো, দুর্বল জায়গা ঠিক করো।"
+  },
+  {
+   "phase": 4,
+   "name": "Final Push",
+   "bn": "শেষ ধাক্কা",
+   "from": 47,
+   "to": 60,
+   "desc": "Exam-condition mock, speed, fine-tuning, তারপর Exam Eve-তে বিশ্রাম।"
+  }
+ ],
+ "days": [
+  {
+   "day": 1,
+   "focus": "Foundation শুরু",
+   "bn_date": "সোমবার, ২৩ নভেম্বর",
+   "type": "Foundation",
+   "date": "2026-11-23",
+   "phase": 1,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 2,
+   "focus": "Grammar + Reading অভ্যাস",
+   "bn_date": "মঙ্গলবার, ২৪ নভেম্বর",
+   "type": "Foundation",
+   "date": "2026-11-24",
+   "phase": 1,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 3,
+   "focus": "Listening + Speaking",
+   "bn_date": "বুধবার, ২৫ নভেম্বর",
+   "type": "Foundation",
+   "date": "2026-11-25",
+   "phase": 1,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 4,
+   "focus": "Skimming ও Scanning",
+   "bn_date": "বৃহস্পতিবার, ২৬ নভেম্বর",
+   "type": "Foundation",
+   "date": "2026-11-26",
+   "phase": 1,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 5,
+   "focus": "Writing Task 1 Basics",
+   "bn_date": "শুক্রবার, ২৭ নভেম্বর",
+   "type": "Foundation",
+   "date": "2026-11-27",
+   "phase": 1,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 6,
+   "focus": "Grammar Core — Tense",
+   "bn_date": "শনিবার, ২৮ নভেম্বর",
+   "type": "Foundation",
+   "date": "2026-11-28",
+   "phase": 1,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 7,
+   "focus": "FULL MOCK 1 — সব ৪টা Module",
+   "bn_date": "রবিবার, ২৯ নভেম্বর",
+   "type": "MOCK",
+   "date": "2026-11-29",
+   "phase": 1,
+   "tasks": [
+    {
+     "label": "Mock Listening",
+     "bn": "মক লিসেনিং",
+     "module": "Listening",
+     "minutes": 30
+    },
+    {
+     "label": "Mock Reading",
+     "bn": "মক রিডিং",
+     "module": "Reading",
+     "minutes": 60
+    },
+    {
+     "label": "Mock Writing",
+     "bn": "মক রাইটিং",
+     "module": "Writing",
+     "minutes": 60
+    },
+    {
+     "label": "Mock Speaking",
+     "bn": "মক স্পিকিং",
+     "module": "Speaking",
+     "minutes": 15
+    },
+    {
+     "label": "Mock analysis — error log",
+     "bn": "মক অ্যানালাইসিস — ভুলের লগ"
+    }
+   ]
+  },
+  {
+   "day": 8,
+   "focus": "Advanced Vocab + Complex Sentence",
+   "bn_date": "সোমবার, ৩০ নভেম্বর",
+   "type": "Foundation",
+   "date": "2026-11-30",
+   "phase": 1,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 9,
+   "focus": "Listening Map + Cue Card Intro",
+   "bn_date": "মঙ্গলবার, ১ ডিসেম্বর",
+   "type": "Foundation",
+   "date": "2026-12-01",
+   "phase": 1,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 10,
+   "focus": "Reading + True/False/Not Given",
+   "bn_date": "বুধবার, ২ ডিসেম্বর",
+   "type": "Foundation",
+   "date": "2026-12-02",
+   "phase": 1,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 11,
+   "focus": "Writing Task 2 — Essay Structure",
+   "bn_date": "বৃহস্পতিবার, ৩ ডিসেম্বর",
+   "type": "Foundation",
+   "date": "2026-12-03",
+   "phase": 1,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 12,
+   "focus": "Listening Dictation + Pronunciation",
+   "bn_date": "শুক্রবার, ৪ ডিসেম্বর",
+   "type": "Foundation",
+   "date": "2026-12-04",
+   "phase": 1,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 13,
+   "focus": "Speaking Part 3 + Critical Thinking",
+   "bn_date": "শনিবার, ৫ ডিসেম্বর",
+   "type": "Foundation",
+   "date": "2026-12-05",
+   "phase": 1,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 14,
+   "focus": "FULL MOCK 2 — সব ৪টা Module",
+   "bn_date": "রবিবার, ৬ ডিসেম্বর",
+   "type": "MOCK",
+   "date": "2026-12-06",
+   "phase": 1,
+   "tasks": [
+    {
+     "label": "Mock Listening",
+     "bn": "মক লিসেনিং",
+     "module": "Listening",
+     "minutes": 30
+    },
+    {
+     "label": "Mock Reading",
+     "bn": "মক রিডিং",
+     "module": "Reading",
+     "minutes": 60
+    },
+    {
+     "label": "Mock Writing",
+     "bn": "মক রাইটিং",
+     "module": "Writing",
+     "minutes": 60
+    },
+    {
+     "label": "Mock Speaking",
+     "bn": "মক স্পিকিং",
+     "module": "Speaking",
+     "minutes": 15
+    },
+    {
+     "label": "Mock analysis — error log",
+     "bn": "মক অ্যানালাইসিস — ভুলের লগ"
+    }
+   ]
+  },
+  {
+   "day": 15,
+   "focus": "Half-Month Review",
+   "bn_date": "সোমবার, ৭ ডিসেম্বর",
+   "type": "Review / Rest",
+   "date": "2026-12-07",
+   "phase": 1,
+   "tasks": [
+    {
+     "label": "Weekly review",
+     "bn": "এই সপ্তাহের সবকিছু রিভিশন",
+     "module": "Revision"
+    },
+    {
+     "label": "Vocab revision",
+     "bn": "শেখা শব্দগুলো আবার দেখো",
+     "module": "Vocab + Grammar"
+    },
+    {
+     "label": "Rest",
+     "bn": "বিশ্রাম — মাথা ঠান্ডা রাখো",
+     "module": "Rest"
+    }
+   ]
+  },
+  {
+   "day": 16,
+   "focus": "Phase 2 শুরু — Reading + Listening",
+   "bn_date": "মঙ্গলবার, ৮ ডিসেম্বর",
+   "type": "Module",
+   "date": "2026-12-08",
+   "phase": 2,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 17,
+   "focus": "Task 1 Intro + Overview",
+   "bn_date": "বুধবার, ৯ ডিসেম্বর",
+   "type": "Module",
+   "date": "2026-12-09",
+   "phase": 2,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 18,
+   "focus": "Reading Traps — T/F/NG ও Headings",
+   "bn_date": "বৃহস্পতিবার, ১০ ডিসেম্বর",
+   "type": "Module",
+   "date": "2026-12-10",
+   "phase": 2,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 19,
+   "focus": "Listening Section 3 ও 4",
+   "bn_date": "শুক্রবার, ১১ ডিসেম্বর",
+   "type": "Module",
+   "date": "2026-12-11",
+   "phase": 2,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 20,
+   "focus": "Task 2 — Agree/Disagree Essay",
+   "bn_date": "শনিবার, ১২ ডিসেম্বর",
+   "type": "Module",
+   "date": "2026-12-12",
+   "phase": 2,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 21,
+   "focus": "FULL MOCK 3 — সব ৪টা Module",
+   "bn_date": "রবিবার, ১৩ ডিসেম্বর",
+   "type": "MOCK",
+   "date": "2026-12-13",
+   "phase": 2,
+   "tasks": [
+    {
+     "label": "Mock Listening",
+     "bn": "মক লিসেনিং",
+     "module": "Listening",
+     "minutes": 30
+    },
+    {
+     "label": "Mock Reading",
+     "bn": "মক রিডিং",
+     "module": "Reading",
+     "minutes": 60
+    },
+    {
+     "label": "Mock Writing",
+     "bn": "মক রাইটিং",
+     "module": "Writing",
+     "minutes": 60
+    },
+    {
+     "label": "Mock Speaking",
+     "bn": "মক স্পিকিং",
+     "module": "Speaking",
+     "minutes": 15
+    },
+    {
+     "label": "Mock analysis — error log",
+     "bn": "মক অ্যানালাইসিস — ভুলের লগ"
+    }
+   ]
+  },
+  {
+   "day": 22,
+   "focus": "Weekly Evaluation + Listening Mock",
+   "bn_date": "সোমবার, ১৪ ডিসেম্বর",
+   "type": "Review / Rest",
+   "date": "2026-12-14",
+   "phase": 2,
+   "tasks": [
+    {
+     "label": "Weekly review",
+     "bn": "এই সপ্তাহের সবকিছু রিভিশন",
+     "module": "Revision"
+    },
+    {
+     "label": "Vocab revision",
+     "bn": "শেখা শব্দগুলো আবার দেখো",
+     "module": "Vocab + Grammar"
+    },
+    {
+     "label": "Rest",
+     "bn": "বিশ্রাম — মাথা ঠান্ডা রাখো",
+     "module": "Rest"
+    }
+   ]
+  },
+  {
+   "day": 23,
+   "focus": "Reading Time Management + Task 1 Process/Map",
+   "bn_date": "মঙ্গলবার, ১৫ ডিসেম্বর",
+   "type": "Module",
+   "date": "2026-12-15",
+   "phase": 2,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 24,
+   "focus": "Listening Diagram + Part 2 Mastery",
+   "bn_date": "বুধবার, ১৬ ডিসেম্বর",
+   "type": "Module",
+   "date": "2026-12-16",
+   "phase": 2,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 25,
+   "focus": "Task 2 — Problem ও Solution",
+   "bn_date": "বৃহস্পতিবার, ১৭ ডিসেম্বর",
+   "type": "Module",
+   "date": "2026-12-17",
+   "phase": 2,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 26,
+   "focus": "Reading Summary + Speaking Debate",
+   "bn_date": "শুক্রবার, ১৮ ডিসেম্বর",
+   "type": "Module",
+   "date": "2026-12-18",
+   "phase": 2,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 27,
+   "focus": "Mini Mock — Writing + Listening",
+   "bn_date": "শনিবার, ১৯ ডিসেম্বর",
+   "type": "MOCK",
+   "date": "2026-12-19",
+   "phase": 2,
+   "tasks": [
+    {
+     "label": "Mini Mock — Writing + Listening",
+     "bn": "মক টেস্ট (ঘড়ি ধরে)",
+     "module": "Mock"
+    },
+    {
+     "label": "Mock analysis — error log",
+     "bn": "ভুলের তালিকা খাতায় লেখো",
+     "module": "Analysis"
+    }
+   ]
+  },
+  {
+   "day": 28,
+   "focus": "FULL MOCK 4 — সব ৪টা Module",
+   "bn_date": "রবিবার, ২০ ডিসেম্বর",
+   "type": "MOCK",
+   "date": "2026-12-20",
+   "phase": 2,
+   "tasks": [
+    {
+     "label": "Mock Listening",
+     "bn": "মক লিসেনিং",
+     "module": "Listening",
+     "minutes": 30
+    },
+    {
+     "label": "Mock Reading",
+     "bn": "মক রিডিং",
+     "module": "Reading",
+     "minutes": 60
+    },
+    {
+     "label": "Mock Writing",
+     "bn": "মক রাইটিং",
+     "module": "Writing",
+     "minutes": 60
+    },
+    {
+     "label": "Mock Speaking",
+     "bn": "মক স্পিকিং",
+     "module": "Speaking",
+     "minutes": 15
+    },
+    {
+     "label": "Mock analysis — error log",
+     "bn": "মক অ্যানালাইসিস — ভুলের লগ"
+    }
+   ]
+  },
+  {
+   "day": 29,
+   "focus": "Weekly Evaluation + Weakness Targeting",
+   "bn_date": "সোমবার, ২১ ডিসেম্বর",
+   "type": "Review / Rest",
+   "date": "2026-12-21",
+   "phase": 2,
+   "tasks": [
+    {
+     "label": "Weekly review",
+     "bn": "এই সপ্তাহের সবকিছু রিভিশন",
+     "module": "Revision"
+    },
+    {
+     "label": "Vocab revision",
+     "bn": "শেখা শব্দগুলো আবার দেখো",
+     "module": "Vocab + Grammar"
+    },
+    {
+     "label": "Rest",
+     "bn": "বিশ্রাম — মাথা ঠান্ডা রাখো",
+     "module": "Rest"
+    }
+   ]
+  },
+  {
+   "day": 30,
+   "focus": "Timed Practice — Listening + Reading",
+   "bn_date": "মঙ্গলবার, ২২ ডিসেম্বর",
+   "type": "Module",
+   "date": "2026-12-22",
+   "phase": 3,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 31,
+   "focus": "Post-Mock Analysis",
+   "bn_date": "বুধবার, ২৩ ডিসেম্বর",
+   "type": "Analysis",
+   "date": "2026-12-23",
+   "phase": 3,
+   "tasks": [
+    {
+     "label": "Post-mock analysis — error log",
+     "bn": "ভুল বিশ্লেষণ: vocab / paraphrase / spelling / শোনা",
+     "module": "Analysis"
+    },
+    {
+     "label": "Weakness drill",
+     "bn": "সবচেয়ে দুর্বল module-এ বাড়তি practice",
+     "module": "Weakness"
+    },
+    {
+     "label": "Speaking practice",
+     "bn": "স্পিকিং practice",
+     "module": "Speaking"
+    }
+   ]
+  },
+  {
+   "day": 32,
+   "focus": "Writing Marathon + Sentence Variation",
+   "bn_date": "বৃহস্পতিবার, ২৪ ডিসেম্বর",
+   "type": "Module",
+   "date": "2026-12-24",
+   "phase": 3,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 33,
+   "focus": "Reading Tricky Questions",
+   "bn_date": "শুক্রবার, ২৫ ডিসেম্বর",
+   "type": "Module",
+   "date": "2026-12-25",
+   "phase": 3,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 34,
+   "focus": "Speaking Pronunciation + Advanced Structures",
+   "bn_date": "শনিবার, ২৬ ডিসেম্বর",
+   "type": "Module",
+   "date": "2026-12-26",
+   "phase": 3,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 35,
+   "focus": "FULL MOCK 5 — সব ৪টা Module",
+   "bn_date": "রবিবার, ২৭ ডিসেম্বর",
+   "type": "MOCK",
+   "date": "2026-12-27",
+   "phase": 3,
+   "tasks": [
+    {
+     "label": "Mock Listening",
+     "bn": "মক লিসেনিং",
+     "module": "Listening",
+     "minutes": 30
+    },
+    {
+     "label": "Mock Reading",
+     "bn": "মক রিডিং",
+     "module": "Reading",
+     "minutes": 60
+    },
+    {
+     "label": "Mock Writing",
+     "bn": "মক রাইটিং",
+     "module": "Writing",
+     "minutes": 60
+    },
+    {
+     "label": "Mock Speaking",
+     "bn": "মক স্পিকিং",
+     "module": "Speaking",
+     "minutes": 15
+    },
+    {
+     "label": "Mock analysis — error log",
+     "bn": "মক অ্যানালাইসিস — ভুলের লগ"
+    }
+   ]
+  },
+  {
+   "day": 36,
+   "focus": "Weekly Review + Reset",
+   "bn_date": "সোমবার, ২৮ ডিসেম্বর",
+   "type": "Review / Rest",
+   "date": "2026-12-28",
+   "phase": 3,
+   "tasks": [
+    {
+     "label": "Weekly review",
+     "bn": "এই সপ্তাহের সবকিছু রিভিশন",
+     "module": "Revision"
+    },
+    {
+     "label": "Vocab revision",
+     "bn": "শেখা শব্দগুলো আবার দেখো",
+     "module": "Vocab + Grammar"
+    },
+    {
+     "label": "Rest",
+     "bn": "বিশ্রাম — মাথা ঠান্ডা রাখো",
+     "module": "Rest"
+    }
+   ]
+  },
+  {
+   "day": 37,
+   "focus": "Y/N/NG + Writing Maps",
+   "bn_date": "মঙ্গলবার, ২৯ ডিসেম্বর",
+   "type": "Module",
+   "date": "2026-12-29",
+   "phase": 3,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 38,
+   "focus": "Listening Mock + Part 3 Deep Dive",
+   "bn_date": "বুধবার, ৩০ ডিসেম্বর",
+   "type": "Module",
+   "date": "2026-12-30",
+   "phase": 3,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 39,
+   "focus": "Reading Marathon — ৩ Passage",
+   "bn_date": "বৃহস্পতিবার, ৩১ ডিসেম্বর",
+   "type": "Module",
+   "date": "2026-12-31",
+   "phase": 3,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 40,
+   "focus": "Task 2 — Two-part Question",
+   "bn_date": "শুক্রবার, ১ জানুয়ারি",
+   "type": "Module",
+   "date": "2027-01-01",
+   "phase": 3,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ],
+   "note": "অন্য একটি পরীক্ষার দিন — সেদিনের কাজ হালকা রাখা বা পরের দিনে মিলিয়ে নেওয়া।"
+  },
+  {
+   "day": 41,
+   "focus": "Timed Practice — Writing + Speaking",
+   "bn_date": "শনিবার, ২ জানুয়ারি",
+   "type": "Module",
+   "date": "2027-01-02",
+   "phase": 3,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 42,
+   "focus": "FULL MOCK 6 — সব ৪টা Module",
+   "bn_date": "রবিবার, ৩ জানুয়ারি",
+   "type": "MOCK",
+   "date": "2027-01-03",
+   "phase": 3,
+   "tasks": [
+    {
+     "label": "Mock Listening",
+     "bn": "মক লিসেনিং",
+     "module": "Listening",
+     "minutes": 30
+    },
+    {
+     "label": "Mock Reading",
+     "bn": "মক রিডিং",
+     "module": "Reading",
+     "minutes": 60
+    },
+    {
+     "label": "Mock Writing",
+     "bn": "মক রাইটিং",
+     "module": "Writing",
+     "minutes": 60
+    },
+    {
+     "label": "Mock Speaking",
+     "bn": "মক স্পিকিং",
+     "module": "Speaking",
+     "minutes": 15
+    },
+    {
+     "label": "Mock analysis — error log",
+     "bn": "মক অ্যানালাইসিস — ভুলের লগ"
+    }
+   ]
+  },
+  {
+   "day": 43,
+   "focus": "Weekly Evaluation + Mental Reset",
+   "bn_date": "সোমবার, ৪ জানুয়ারি",
+   "type": "Review / Rest",
+   "date": "2027-01-04",
+   "phase": 3,
+   "tasks": [
+    {
+     "label": "Weekly review",
+     "bn": "এই সপ্তাহের সবকিছু রিভিশন",
+     "module": "Revision"
+    },
+    {
+     "label": "Vocab revision",
+     "bn": "শেখা শব্দগুলো আবার দেখো",
+     "module": "Vocab + Grammar"
+    },
+    {
+     "label": "Rest",
+     "bn": "বিশ্রাম — মাথা ঠান্ডা রাখো",
+     "module": "Rest"
+    }
+   ]
+  },
+  {
+   "day": 44,
+   "focus": "Reading Speed Drill + Listening Maps",
+   "bn_date": "মঙ্গলবার, ৫ জানুয়ারি",
+   "type": "Module",
+   "date": "2027-01-05",
+   "phase": 3,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 45,
+   "focus": "Double Charts + Full Task 2",
+   "bn_date": "বুধবার, ৬ জানুয়ারি",
+   "type": "Module",
+   "date": "2027-01-06",
+   "phase": 3,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 46,
+   "focus": "Timed Practice — Reading + Writing",
+   "bn_date": "বৃহস্পতিবার, ৭ জানুয়ারি",
+   "type": "Module",
+   "date": "2027-01-07",
+   "phase": 3,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 47,
+   "focus": "Mock Autopsy + Part 2 Mastery",
+   "bn_date": "শুক্রবার, ৮ জানুয়ারি",
+   "type": "Analysis",
+   "date": "2027-01-08",
+   "phase": 4,
+   "tasks": [
+    {
+     "label": "Post-mock analysis — error log",
+     "bn": "ভুল বিশ্লেষণ: vocab / paraphrase / spelling / শোনা",
+     "module": "Analysis"
+    },
+    {
+     "label": "Weakness drill",
+     "bn": "সবচেয়ে দুর্বল module-এ বাড়তি practice",
+     "module": "Weakness"
+    },
+    {
+     "label": "Speaking practice",
+     "bn": "স্পিকিং practice",
+     "module": "Speaking"
+    }
+   ]
+  },
+  {
+   "day": 48,
+   "focus": "Section 3 ও 4 Drill",
+   "bn_date": "শনিবার, ৯ জানুয়ারি",
+   "type": "Module",
+   "date": "2027-01-09",
+   "phase": 4,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 49,
+   "focus": "FULL MOCK 7 — Pushing Limits",
+   "bn_date": "রবিবার, ১০ জানুয়ারি",
+   "type": "MOCK",
+   "date": "2027-01-10",
+   "phase": 4,
+   "tasks": [
+    {
+     "label": "Mock Listening",
+     "bn": "মক লিসেনিং",
+     "module": "Listening",
+     "minutes": 30
+    },
+    {
+     "label": "Mock Reading",
+     "bn": "মক রিডিং",
+     "module": "Reading",
+     "minutes": 60
+    },
+    {
+     "label": "Mock Writing",
+     "bn": "মক রাইটিং",
+     "module": "Writing",
+     "minutes": 60
+    },
+    {
+     "label": "Mock Speaking",
+     "bn": "মক স্পিকিং",
+     "module": "Speaking",
+     "minutes": 15
+    },
+    {
+     "label": "Mock analysis — error log",
+     "bn": "মক অ্যানালাইসিস — ভুলের লগ"
+    }
+   ]
+  },
+  {
+   "day": 50,
+   "focus": "Weekly Evaluation + Final 10-Day Strategy",
+   "bn_date": "সোমবার, ১১ জানুয়ারি",
+   "type": "Review / Rest",
+   "date": "2027-01-11",
+   "phase": 4,
+   "tasks": [
+    {
+     "label": "Weekly review",
+     "bn": "এই সপ্তাহের সবকিছু রিভিশন",
+     "module": "Revision"
+    },
+    {
+     "label": "Vocab revision",
+     "bn": "শেখা শব্দগুলো আবার দেখো",
+     "module": "Vocab + Grammar"
+    },
+    {
+     "label": "Rest",
+     "bn": "বিশ্রাম — মাথা ঠান্ডা রাখো",
+     "module": "Rest"
+    }
+   ]
+  },
+  {
+   "day": 51,
+   "focus": "Weakness Targeting + Intense Reading",
+   "bn_date": "মঙ্গলবার, ১২ জানুয়ারি",
+   "type": "Module",
+   "date": "2027-01-12",
+   "phase": 4,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 52,
+   "focus": "Timed Practice — Listening + Speaking",
+   "bn_date": "বুধবার, ১৩ জানুয়ারি",
+   "type": "Module",
+   "date": "2027-01-13",
+   "phase": 4,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 53,
+   "focus": "Mock 5 Autopsy + Essay Polishing",
+   "bn_date": "বৃহস্পতিবার, ১৪ জানুয়ারি",
+   "type": "Analysis",
+   "date": "2027-01-14",
+   "phase": 4,
+   "tasks": [
+    {
+     "label": "Post-mock analysis — error log",
+     "bn": "ভুল বিশ্লেষণ: vocab / paraphrase / spelling / শোনা",
+     "module": "Analysis"
+    },
+    {
+     "label": "Weakness drill",
+     "bn": "সবচেয়ে দুর্বল module-এ বাড়তি practice",
+     "module": "Weakness"
+    },
+    {
+     "label": "Speaking practice",
+     "bn": "স্পিকিং practice",
+     "module": "Speaking"
+    }
+   ]
+  },
+  {
+   "day": 54,
+   "focus": "Double Marathon — Stamina Builder",
+   "bn_date": "শুক্রবার, ১৫ জানুয়ারি",
+   "type": "MOCK",
+   "date": "2027-01-15",
+   "phase": 4,
+   "tasks": [
+    {
+     "label": "Double Marathon — Stamina Builder",
+     "bn": "মক টেস্ট (ঘড়ি ধরে)",
+     "module": "Mock"
+    },
+    {
+     "label": "Mock analysis — error log",
+     "bn": "ভুলের তালিকা খাতায় লেখো",
+     "module": "Analysis"
+    }
+   ]
+  },
+  {
+   "day": 55,
+   "focus": "Writing Masterclass + Time Crunch",
+   "bn_date": "শনিবার, ১৬ জানুয়ারি",
+   "type": "Module",
+   "date": "2027-01-16",
+   "phase": 4,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 56,
+   "focus": "FULL MOCK 8 — The Ultimate",
+   "bn_date": "রবিবার, ১৭ জানুয়ারি",
+   "type": "MOCK",
+   "date": "2027-01-17",
+   "phase": 4,
+   "tasks": [
+    {
+     "label": "Mock Listening",
+     "bn": "মক লিসেনিং",
+     "module": "Listening",
+     "minutes": 30
+    },
+    {
+     "label": "Mock Reading",
+     "bn": "মক রিডিং",
+     "module": "Reading",
+     "minutes": 60
+    },
+    {
+     "label": "Mock Writing",
+     "bn": "মক রাইটিং",
+     "module": "Writing",
+     "minutes": 60
+    },
+    {
+     "label": "Mock Speaking",
+     "bn": "মক স্পিকিং",
+     "module": "Speaking",
+     "minutes": 15
+    },
+    {
+     "label": "Mock analysis — error log",
+     "bn": "মক অ্যানালাইসিস — ভুলের লগ"
+    }
+   ]
+  },
+  {
+   "day": 57,
+   "focus": "Fine Tuning — ছোট ভুল বন্ধ করো",
+   "bn_date": "সোমবার, ১৮ জানুয়ারি",
+   "type": "Module",
+   "date": "2027-01-18",
+   "phase": 4,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 58,
+   "focus": "Speed Run — ঘড়িকে হারাও",
+   "bn_date": "মঙ্গলবার, ১৯ জানুয়ারি",
+   "type": "Module",
+   "date": "2027-01-19",
+   "phase": 4,
+   "tasks": [
+    {
+     "label": "Listening",
+     "bn": "লিসেনিং",
+     "module": "Listening",
+     "minutes": 120
+    },
+    {
+     "label": "Reading",
+     "bn": "রিডিং",
+     "module": "Reading",
+     "minutes": 120
+    },
+    {
+     "label": "Writing",
+     "bn": "রাইটিং",
+     "module": "Writing",
+     "minutes": 90
+    },
+    {
+     "label": "Speaking",
+     "bn": "স্পিকিং",
+     "module": "Speaking",
+     "minutes": 30
+    }
+   ]
+  },
+  {
+   "day": 59,
+   "focus": "Final Review — Confidence Building",
+   "bn_date": "বুধবার, ২০ জানুয়ারি",
+   "type": "Review / Rest",
+   "date": "2027-01-20",
+   "phase": 4,
+   "tasks": [
+    {
+     "label": "Weekly review",
+     "bn": "এই সপ্তাহের সবকিছু রিভিশন",
+     "module": "Revision"
+    },
+    {
+     "label": "Vocab revision",
+     "bn": "শেখা শব্দগুলো আবার দেখো",
+     "module": "Vocab + Grammar"
+    },
+    {
+     "label": "Rest",
+     "bn": "বিশ্রাম — মাথা ঠান্ডা রাখো",
+     "module": "Rest"
+    }
+   ]
+  },
+  {
+   "day": 60,
+   "focus": "Exam Eve — Relax ও Prepare",
+   "bn_date": "বৃহস্পতিবার, ২১ জানুয়ারি",
+   "type": "Exam Eve",
+   "date": "2027-01-21",
+   "phase": 4,
+   "tasks": [
+    {
+     "label": "Light review only",
+     "bn": "শুধু হালকা রিভিশন — নতুন কিছু নয়",
+     "module": "Revision"
+    },
+    {
+     "label": "Documents ready",
+     "bn": "পরীক্ষার জিনিসপত্র গুছিয়ে রাখো",
+     "module": "Prep"
+    },
+    {
+     "label": "Early sleep",
+     "bn": "তাড়াতাড়ি ঘুমাও",
+     "module": "Rest"
+    }
+   ]
+  }
+ ],
+ "techniques": [
+  {
+   "module": "Listening",
+   "title": "Word-limit নিয়ম - সবচেয়ে দামি ভুল",
+   "reel": 172
+  },
+  {
+   "module": "Listening",
+   "title": "MCQ Trap - Choose TWO letters",
+   "reel": 168
+  },
+  {
+   "module": "Listening",
+   "title": "Spelling Practice - আলাদা website",
+   "reel": 171
+  },
+  {
+   "module": "Reading",
+   "title": "Key-Word Method",
+   "reel": 45
+  },
+  {
+   "module": "Reading",
+   "title": "Matching Headings",
+   "reel": 19
+  },
+  {
+   "module": "Reading",
+   "title": "Paragraph Matching",
+   "reel": 28
+  },
+  {
+   "module": "Writing",
+   "title": "Task 1 Introduction-এর 2টি Master Formula",
+   "reel": 22
+  },
+  {
+   "module": "Writing",
+   "title": "Bar Chart-এর Comparison Sentence",
+   "reel": 31
+  },
+  {
+   "module": "Writing",
+   "title": "Bar Chart Vocabulary - পরিমাণ অনুযায়ী শব্দ বাছাই",
+   "reel": 36
+  },
+  {
+   "module": "Writing",
+   "title": "Map Vocabulary - Task 1",
+   "reel": 33
+  },
+  {
+   "module": "Writing",
+   "title": "Writing-এ ভালো করার 5-Step System",
+   "reel": 169
+  },
+  {
+   "module": "Speaking",
+   "title": "Vocabulary Upgrade",
+   "reel": 9
+  }
+ ],
+ "cue_cards": [
+  {
+   "n": 1,
+   "title": "Describe a time when you helped someone",
+   "page": 12
+  },
+  {
+   "n": 2,
+   "title": "Describe a book you enjoyed reading and that made you happy",
+   "page": 16
+  },
+  {
+   "n": 3,
+   "title": "Describe a person you know who has healthy habits and a healthy daily routine",
+   "page": 19
+  },
+  {
+   "n": 4,
+   "title": "Describe a way/change that helps you save a lot of time",
+   "page": 24
+  },
+  {
+   "n": 5,
+   "title": "Describe an occasion when you lost something in public",
+   "page": 27
+  },
+  {
+   "n": 6,
+   "title": "Describe a person you only met once recently and want to know more about",
+   "page": 29
+  },
+  {
+   "n": 7,
+   "title": "Describe a course that impressed you a lot",
+   "page": 32
+  },
+  {
+   "n": 8,
+   "title": "Describe a gift you would like to buy for your friend",
+   "page": 35
+  },
+  {
+   "n": 9,
+   "title": "Describe a person whose health and fitness you have helped to improve",
+   "page": 39
+  },
+  {
+   "n": 10,
+   "title": "Describe somewhere near a natural place that you have been to",
+   "page": 42
+  },
+  {
+   "n": 11,
+   "title": "Describe a party for a special event that impressed you a lot",
+   "page": 45
+  },
+  {
+   "n": 12,
+   "title": "Describe a building you enjoy visiting (e.g. a library, a shopping mall, etc.)",
+   "page": 48
+  },
+  {
+   "n": 13,
+   "title": "Describe your least favourite movie",
+   "page": 51
+  },
+  {
+   "n": 14,
+   "title": "Describe a person who taught you a new skill",
+   "page": 53
+  },
+  {
+   "n": 15,
+   "title": "Describe a person who learns history and loves history",
+   "page": 56
+  },
+  {
+   "n": 16,
+   "title": "Describe an enjoyable evening you had with your friends",
+   "page": 60
+  },
+  {
+   "n": 17,
+   "title": "Describe a person who is good at making things by hand",
+   "page": 63
+  },
+  {
+   "n": 18,
+   "title": "Describe a time when someone talked about something you were not interested in but you kept listening",
+   "page": 66
+  },
+  {
+   "n": 19,
+   "title": "Describe a person you know who really likes taking photos",
+   "page": 69
+  },
+  {
+   "n": 20,
+   "title": "Describe a new skill you learned when you were a child",
+   "page": 71
+  },
+  {
+   "n": 21,
+   "title": "Describe a time when you saved money to buy something special",
+   "page": 75
+  },
+  {
+   "n": 22,
+   "title": "Describe a natural place in your city that you enjoy visiting",
+   "page": 77
+  },
+  {
+   "n": 23,
+   "title": "Describe a person you know who is very organized",
+   "page": 80
+  },
+  {
+   "n": 24,
+   "title": "Describe a time you watched a famous person being interviewed",
+   "page": 83
+  },
+  {
+   "n": 25,
+   "title": "Describe a happy person you know",
+   "page": 86
+  },
+  {
+   "n": 26,
+   "title": "Describe a time when you changed an important decision of yours",
+   "page": 88
+  },
+  {
+   "n": 27,
+   "title": "Describe a famous person in your local area",
+   "page": 91
+  },
+  {
+   "n": 28,
+   "title": "Describe a time you made an important decision and were happy with the result",
+   "page": 94
+  },
+  {
+   "n": 29,
+   "title": "Describe a person you know who did something difficult and was successful",
+   "page": 96
+  },
+  {
+   "n": 30,
+   "title": "Describe a popular person",
+   "page": 99
+  },
+  {
+   "n": 31,
+   "title": "Describe a city that you have been to and would like to visit again",
+   "page": 102
+  },
+  {
+   "n": 32,
+   "title": "Describe a time when you received good service in a shop/store",
+   "page": 104
+  },
+  {
+   "n": 33,
+   "title": "Describe a crowded place you went to",
+   "page": 108
+  },
+  {
+   "n": 34,
+   "title": "Describe a successful sportsperson you admire",
+   "page": 110
+  },
+  {
+   "n": 35,
+   "title": "Describe an activity you do regularly that you think is a waste of time",
+   "page": 113
+  },
+  {
+   "n": 36,
+   "title": "Describe someone who is older than you that you admire",
+   "page": 115
+  },
+  {
+   "n": 37,
+   "title": "Describe a short trip you often take but do not like",
+   "page": 117
+  },
+  {
+   "n": 38,
+   "title": "Describe a noisy place you have been to",
+   "page": 119
+  },
+  {
+   "n": 39,
+   "title": "Describe a change that you made recently",
+   "page": 121
+  },
+  {
+   "n": 40,
+   "title": "Describe a piece of local news that people are interested in",
+   "page": 123
+  },
+  {
+   "n": 41,
+   "title": "Describe a time when you changed an important opinion of yours",
+   "page": 125
+  },
+  {
+   "n": 42,
+   "title": "Describe a law on environmental protection",
+   "page": 127
+  },
+  {
+   "n": 43,
+   "title": "Describe a special cake you received from others",
+   "page": 129
+  },
+  {
+   "n": 44,
+   "title": "Describe a person who likes to look after the natural world",
+   "page": 131
+  },
+  {
+   "n": 45,
+   "title": "Describe a story/book with animals in it",
+   "page": 133
+  },
+  {
+   "n": 46,
+   "title": "Describe a time when you had a problem using an electronic device",
+   "page": 135
+  },
+  {
+   "n": 47,
+   "title": "Describe an advertisement with a famous person in it",
+   "page": 137
+  },
+  {
+   "n": 48,
+   "title": "Describe a challenging technological problem you faced",
+   "page": 139
+  },
+  {
+   "n": 49,
+   "title": "Describe a TV show/online program you have watched recently",
+   "page": 141
+  },
+  {
+   "n": 50,
+   "title": "Describe a place you have travelled to that you would like to recommend to others",
+   "page": 143
+  },
+  {
+   "n": 51,
+   "title": "Describe a person who is good at learning and speaking new languages",
+   "page": 145
+  },
+  {
+   "n": 52,
+   "title": "Describe a long-term goal/ambition you would like to achieve",
+   "page": 147
+  },
+  {
+   "n": 53,
+   "title": "Describe a time when you were stuck in a traffic jam for a very long time",
+   "page": 150
+  },
+  {
+   "n": 54,
+   "title": "Describe a special day out that cost you little money/didn’t cost you much",
+   "page": 152
+  },
+  {
+   "n": 55,
+   "title": "Describe a home that you like to visit but do not want to live in",
+   "page": 154
+  },
+  {
+   "n": 56,
+   "title": "Describe a thing you did to learn another language",
+   "page": 156
+  },
+  {
+   "n": 57,
+   "title": "Describe a time when you organized a happy event successfully",
+   "page": 158
+  },
+  {
+   "n": 58,
+   "title": "Describe a time when you sent a message or an email to someone but received no reply for a long time",
+   "page": 160
+  },
+  {
+   "n": 59,
+   "title": "Describe a city you enjoyed visiting",
+   "page": 162
+  },
+  {
+   "n": 60,
+   "title": "Describe a short-term job you want to have in a foreign country",
+   "page": 164
+  },
+  {
+   "n": 61,
+   "title": "Describe a boring place",
+   "page": 166
+  },
+  {
+   "n": 62,
+   "title": "Describe a new law you would like to introduce in your country",
+   "page": 168
+  },
+  {
+   "n": 63,
+   "title": "Describe a time when you got up early",
+   "page": 170
+  },
+  {
+   "n": 64,
+   "title": "Describe a TV or online program you like to watch",
+   "page": 172
+  },
+  {
+   "n": 65,
+   "title": "Describe a city that you think is very interesting/famous",
+   "page": 174
+  },
+  {
+   "n": 66,
+   "title": "Describe an interesting video",
+   "page": 176
+  },
+  {
+   "n": 67,
+   "title": "Describe a tall building you like or dislike",
+   "page": 178
+  },
+  {
+   "n": 68,
+   "title": "Describe a time when you worked in a group",
+   "page": 180
+  },
+  {
+   "n": 69,
+   "title": "Describe a person who loves to grow plants (e.g. vegetables, flowers) at home or in the garden",
+   "page": 182
+  },
+  {
+   "n": 70,
+   "title": "Describe a person you know who has a successful business",
+   "page": 184
+  },
+  {
+   "n": 71,
+   "title": "Describe an important decision that you made",
+   "page": 186
+  },
+  {
+   "n": 72,
+   "title": "Describe a person who works in a successful company",
+   "page": 188
+  },
+  {
+   "n": 73,
+   "title": "Describe a place you would like to visit in your free time",
+   "page": 190
+  },
+  {
+   "n": 74,
+   "title": "Describe a food that people eat on special occasions/events",
+   "page": 192
+  },
+  {
+   "n": 75,
+   "title": "Describe a live sports event you watched and liked",
+   "page": 194
+  },
+  {
+   "n": 76,
+   "title": "Describe a person you know who would like to choose a career in the medical field (e.g. a doctor, a nurse)",
+   "page": 196
+  },
+  {
+   "n": 77,
+   "title": "Describe a child who loves drawing/painting",
+   "page": 198
+  },
+  {
+   "n": 78,
+   "title": "Describe one of your friends who learned something without a teacher",
+   "page": 200
+  },
+  {
+   "n": 79,
+   "title": "Talk about a time when you gave advice to someone.",
+   "page": 202
+  },
+  {
+   "n": 80,
+   "title": "Describe a person who often helps others",
+   "page": 204
+  },
+  {
+   "n": 81,
+   "title": "Describe a piece of technology (not a phone) that you would like to own",
+   "page": 206
+  },
+  {
+   "n": 82,
+   "title": "Describe an occasion when you were not allowed to use your mobile phone",
+   "page": 208
+  },
+  {
+   "n": 83,
+   "title": "Describe a program or app on your computer or phone",
+   "page": 210
+  },
+  {
+   "n": 84,
+   "title": "Describe a natural place (e.g. parks, mountains, etc.)",
+   "page": 212
+  },
+  {
+   "n": 85,
+   "title": "Describe an occasion when many people were smiling",
+   "page": 214
+  },
+  {
+   "n": 86,
+   "title": "Describe an item on which you spent more than expected",
+   "page": 216
+  },
+  {
+   "n": 87,
+   "title": "Describe a person who solved a problem in a smart way",
+   "page": 218
+  },
+  {
+   "n": 88,
+   "title": "Describe a time when you needed to use your imagination",
+   "page": 220
+  },
+  {
+   "n": 89,
+   "title": "Describe a natural talent you want to improve like sports music",
+   "page": 222
+  },
+  {
+   "n": 90,
+   "title": "Describe a time when you’re waiting for something special that would happen",
+   "page": 224
+  },
+  {
+   "n": 91,
+   "title": "Describe a time when you encouraged someone to do someone to do something that he/she didn’t want to do",
+   "page": 227
+  },
+  {
+   "n": 92,
+   "title": "Describe an event you attended in which you didn’t like the music played",
+   "page": 229
+  },
+  {
+   "n": 93,
+   "title": "Describe an unusual meal you had.",
+   "page": 231
+  },
+  {
+   "n": 94,
+   "title": "Describe an interesting building",
+   "page": 234
+  },
+  {
+   "n": 95,
+   "title": "Describe a perfect job you would like to have in the future",
+   "page": 236
+  },
+  {
+   "n": 96,
+   "title": "Describe a bicycle/motorcycle/car trip you would like to go on.",
+   "page": 238
+  },
+  {
+   "n": 97,
+   "title": "Describe a time when you received good service in a shop/store",
+   "page": 240
+  },
+  {
+   "n": 98,
+   "title": "Describe something that you can’t live without (not a computer/phone)",
+   "page": 242
+  },
+  {
+   "n": 99,
+   "title": "Describe a positive change that you have made recently in your daily routine",
+   "page": 244
+  },
+  {
+   "n": 100,
+   "title": "Describe a time when you felt proud of a family member",
+   "page": 246
+  },
+  {
+   "n": 101,
+   "title": "Describe a movie you watched recently that you felt disappointed about",
+   "page": 248
+  },
+  {
+   "n": 102,
+   "title": "Describe a person who makes plans a lot and is good at planning",
+   "page": 250
+  },
+  {
+   "n": 103,
+   "title": "Describe the home of someone you know well and that you often visit",
+   "page": 252
+  },
+  {
+   "n": 104,
+   "title": "Describe an interesting traditional story",
+   "page": 254
+  },
+  {
+   "n": 105,
+   "title": "Describe a successful sportsperson you admire",
+   "page": 256
+  },
+  {
+   "n": 106,
+   "title": "Describe a talk you gave to a group of people",
+   "page": 258
+  },
+  {
+   "n": 107,
+   "title": "Describe a good habit your friend has, and you want to develop",
+   "page": 260
+  },
+  {
+   "n": 108,
+   "title": "Describe a time you saw something interesting on social media",
+   "page": 262
+  },
+  {
+   "n": 109,
+   "title": "Describe a time when you told your friend an important truth",
+   "page": 264
+  },
+  {
+   "n": 110,
+   "title": "Describe the time when you first talked in a foreign language",
+   "page": 266
+  },
+  {
+   "n": 111,
+   "title": "Describe a book you read that you found useful",
+   "page": 268
+  },
+  {
+   "n": 112,
+   "title": "Describe a time when someone apologized to you",
+   "page": 270
+  },
+  {
+   "n": 113,
+   "title": "Describe an occasion when you lost your way",
+   "page": 272
+  },
+  {
+   "n": 114,
+   "title": "Describe a time when you saw something in the sky (e.g. flying kites, birds, sunset, etc.)",
+   "page": 275
+  },
+  {
+   "n": 115,
+   "title": "Describe a place you went to and an outdoor activity you did there",
+   "page": 277
+  },
+  {
+   "n": 116,
+   "title": "Describe someone else’s room you enjoy spending time in",
+   "page": 279
+  },
+  {
+   "n": 117,
+   "title": "Describe a singer whose music/songs you like",
+   "page": 281
+  },
+  {
+   "n": 118,
+   "title": "Describe a piece of technology you own that you feel is difficult to use",
+   "page": 283
+  },
+  {
+   "n": 119,
+   "title": "Describe a time when the electricity suddenly went off",
+   "page": 285
+  },
+  {
+   "n": 120,
+   "title": "Describe an exciting activity you have tried for the first time",
+   "page": 287
+  },
+  {
+   "n": 121,
+   "title": "Describe an important decision made with the help of other people",
+   "page": 289
+  },
+  {
+   "n": 122,
+   "title": "Describe a great dinner you and your friends or family members enjoyed",
+   "page": 291
+  },
+  {
+   "n": 123,
+   "title": "Describe a friend of yours who is good at music/singing",
+   "page": 293
+  },
+  {
+   "n": 124,
+   "title": "Describe a good friend who is important to you",
+   "page": 295
+  },
+  {
+   "n": 125,
+   "title": "Describe an important old thing that your family has kept for a long time",
+   "page": 297
+  },
+  {
+   "n": 126,
+   "title": "Describe a time when you broke something",
+   "page": 299
+  },
+  {
+   "n": 127,
+   "title": "Describe a wild animal that you want to learn more about",
+   "page": 301
+  },
+  {
+   "n": 128,
+   "title": "Describe a person you know who enjoys working for a family business (e.g. a shop, etc.)",
+   "page": 303
+  },
+  {
+   "n": 129,
+   "title": "Describe a long journey you had and would like to take again",
+   "page": 305
+  },
+  {
+   "n": 130,
+   "title": "Describe a creative person (e.g. an artist, a musician, an architect, etc.) you admire",
+   "page": 307
+  },
+  {
+   "n": 131,
+   "title": "Describe a popular/well-known person in your country",
+   "page": 309
+  },
+  {
+   "n": 132,
+   "title": "Describe an outdoor sport you would like to do",
+   "page": 311
+  },
+  {
+   "n": 133,
+   "title": "Describe a film that made you laugh",
+   "page": 313
+  },
+  {
+   "n": 134,
+   "title": "Describe a place in your country or part of your country that you would like to recommend to visitors/travelers",
+   "page": 315
+  },
+  {
+   "n": 135,
+   "title": "Describe a sports event you would like to watch",
+   "page": 317
+  },
+  {
+   "n": 136,
+   "title": "Describe a person's house/apartment that you think is very good",
+   "page": 319
+  },
+  {
+   "n": 137,
+   "title": "Describe a time when you forgot/missed an appointment",
+   "page": 321
+  },
+  {
+   "n": 138,
+   "title": "Describe a city you have been to and would like to visit again",
+   "page": 323
+  },
+  {
+   "n": 139,
+   "title": "Describe a program you like to watch",
+   "page": 325
+  },
+  {
+   "n": 140,
+   "title": "Describe a famous person you would like to meet",
+   "page": 327
+  },
+  {
+   "n": 141,
+   "title": "Describe a friend from your childhood",
+   "page": 329
+  },
+  {
+   "n": 142,
+   "title": "Describe a person who likes to grow plants",
+   "page": 331
+  },
+  {
+   "n": 143,
+   "title": "Describe an unusual but interesting building you would like to visit.",
+   "page": 333
+  },
+  {
+   "n": 144,
+   "title": "Describe a shop/store you often visit",
+   "page": 335
+  },
+  {
+   "n": 145,
+   "title": "Describe a TV series you like",
+   "page": 337
+  },
+  {
+   "n": 146,
+   "title": "Describe a plan that you had to change recently",
+   "page": 339
+  },
+  {
+   "n": 147,
+   "title": "Describe a quiet place you like to go",
+   "page": 341
+  },
+  {
+   "n": 148,
+   "title": "Describe an important river/lake in your country",
+   "page": 343
+  }
+ ],
+ "resources": [
+  {
+   "name": "dailydictation.com",
+   "url": "https://dailydictation.com",
+   "module": "Listening",
+   "for": "Listening dictation — শুনে হুবহু লেখো; কান তৈরি ও spelling দুটোই হয়",
+   "source": "Dhaka ভিডিও"
+  },
+  {
+   "name": "aeon.co",
+   "url": "https://aeon.co",
+   "module": "Reading",
+   "for": "Reading article — প্রতিদিন পড়ো; IELTS passage-এর topic-এর সাথে মিল আছে",
+   "source": "Dhaka ভিডিও"
+  },
+  {
+   "name": "newsinlevels.com",
+   "url": "https://www.newsinlevels.com",
+   "module": "Reading",
+   "for": "সহজ English news — level অনুযায়ী পড়ো",
+   "source": "Dhaka ভিডিও"
+  },
+  {
+   "name": "mini-ielts.com",
+   "url": "https://mini-ielts.com",
+   "module": "Listening + Reading",
+   "for": "Timed practice set — timer ও question palette-সহ",
+   "source": "Moktadir"
+  },
+  {
+   "name": "ieltsspelling.com",
+   "url": "https://ieltsspelling.com",
+   "module": "Listening",
+   "for": "Spelling practice — Category, Top Exam Words, Timed Challenge",
+   "source": "Moktadir"
+  },
+  {
+   "name": "ieltsprephub.org",
+   "url": "https://ieltsprephub.org",
+   "module": "All + Mock",
+   "for": "Mock test ও Spelling Practice; Speaking-এ 720টি প্রশ্ন",
+   "source": "Moktadir site"
+  },
+  {
+   "name": "moktadirsielts.com/roadmap",
+   "url": "https://moktadirsielts.com/roadmap/",
+   "module": "Plan",
+   "for": "60-day roadmap — চলতি রুটিনের উৎস",
+   "source": "Moktadir"
+  },
+  {
+   "name": "moktadirsielts.com/recent-questions",
+   "url": "https://moktadirsielts.com/recent-questions/",
+   "module": "Reading",
+   "for": "আসল পরীক্ষায় আসা passage solve করো",
+   "source": "Moktadir"
+  },
+  {
+   "name": "IELTS 60-day routine (live)",
+   "url": "https://ielts-60-day-routine.asmitsr.workers.dev",
+   "module": "Plan",
+   "for": "লাইভ রুটিন + /notes-এ সব নোট ও Makkar তালিকা",
+   "source": "নিজের পেজ"
+  },
+  {
+   "name": "Mentors IELTS playlists",
+   "url": "https://mentors-ielts-playlists.asmitsr.workers.dev",
+   "module": "All",
+   "for": "Mentors course ভিডিও module ধরে সাজানো (login লাগে)",
+   "source": "নিজের পেজ"
+  },
+  {
+   "name": "Cambridge IELTS Books 10-19 + Official Guide",
+   "url": "",
+   "module": "All",
+   "for": "সব practice-এর মূল বই — Part A-র তালিকা ধরে test বেছে নাও",
+   "source": "Dhaka outline"
+  },
+  {
+   "name": "Makkar Speaking (Sep-Dec 2026 PDF)",
+   "url": "",
+   "module": "Speaking",
+   "for": "148টি cue card, পেজ নম্বরসহ",
+   "source": "নিজের ফাইল"
+  },
+  {
+   "name": "ieltsonlinetests.com",
+   "url": "https://ieltsOnlineTests.com",
+   "module": "Mock",
+   "for": "Online IELTS test practice (ফ্রি)",
+   "source": "4 Best Websites"
+  },
+  {
+   "name": "Road to IELTS",
+   "url": "https://www.roadtoielts.com",
+   "module": "Mock",
+   "for": "British Council-এর mock resource",
+   "source": "আগের নোট"
+  },
+  {
+   "name": "IELTS.org",
+   "url": "https://www.ielts.org",
+   "module": "Official",
+   "for": "অফিসিয়াল format ও marking বোঝার জন্য",
+   "source": "Official"
+  },
+  {
+   "name": "Duolingo",
+   "url": "https://www.duolingo.com",
+   "module": "App",
+   "for": "প্রতিদিনের English practice — 10 মিনিট",
+   "source": "Moktadir"
+  },
+  {
+   "name": "British Council LearnEnglish",
+   "url": "https://learnenglish.britishcouncil.org",
+   "module": "App",
+   "for": "Listening + Grammar — level অনুযায়ী lesson",
+   "source": "Moktadir"
+  },
+  {
+   "name": "HelloTalk",
+   "url": "https://www.hellotalk.com",
+   "module": "App",
+   "for": "Native speaker-দের সাথে chat — কথা বলার practice",
+   "source": "Moktadir"
+  },
+  {
+   "name": "Khan Academy",
+   "url": "https://www.khanacademy.org",
+   "module": "App",
+   "for": "Video lesson + practice",
+   "source": "Moktadir"
+  },
+  {
+   "name": "MIT OpenCourseWare",
+   "url": "https://ocw.mit.edu",
+   "module": "App",
+   "for": "ফ্রি lecture, বই, note",
+   "source": "Moktadir"
+  }
+ ],
+ "notes": {
+  "plan_note": "Day 1 = 23 Nov 2026 থেকে শুরু (ব্যবহারকারীর সিদ্ধান্ত, 22 Nov)। দিনের focus Moktadir-এর 60-day calendar অনুযায়ী; প্রতিদিনের পড়ার block Dhaka প্ল্যানের 6 ঘণ্টা (Listening 2h + Reading 2h + Writing 1.5h + Speaking 30min), টার্গেট Band 7.5+।",
+  "day40": "Day 40 (1 Jan 2027) অন্য একটি পরীক্ষার দিন — সেদিনের কাজ হালকা রাখা বা পরের দিনে মিলিয়ে নেওয়ার নির্দেশ আছে।",
+  "mock_rule": "প্রতিটি mock-এর পরের দিন শুধু analysis — ভুলটা vocabulary, paraphrase, spelling, নাকি শোনায়, তা আলাদা করে খাতায় লেখো।",
+  "times_note": "সময় (ঘড়ির কাঁটা) ফিক্সড নয় — ব্যবহারকারী নিজে বেছে নেবে কখন কোন block পড়বে। শুধু সময়কাল (duration) ফিক্সড: Listening 2h, Reading 2h, Writing 1.5h, Speaking 30min।"
+ },
+ "time_selection": {
+  "rule": "No fixed clock times. The user picks the start time for each block himself, in the app. Durations are FIXED per section: Listening 120 min, Reading 120 min, Writing 90 min, Speaking 30 min (6h/day total). The app must let him select/change each block start time, and the live \"what now\" panel + timers follow HIS selected times.",
+  "wake": "05:00 (latest 05:30) — his own window, kept",
+  "sleep": "23:30 target (latest 24:00) — his own window, kept"
+ },
+ "mock_schedule_note": "সাপ্তাহিক মক টেস্ট — প্রতি রবিবার (Day 7, 14, 21, 28, 35, 42, 49, 56)",
+ "mock_timing": {
+  "listening": 30,
+  "reading": 60,
+  "writing": 60,
+  "speaking": 15,
+  "note": "Mock day-তে পরীক্ষার আসল সময় অনুযায়ী — Listening ৩০ মিনিট, Reading ৬০ মিনিট, Writing ৬০ মিনিট, Speaking ~১৫ মিনিট (মোট ~২ ঘণ্টা ৪৫ মিনিট) + analysis; সেদিন ৬ ঘণ্টার normal block নয়।"
+ },
+ "mock_sources": [
+  {
+   "name": "IELTS Prep Hub — Mock Test",
+   "url": "https://ieltsprephub.org",
+   "note": "ফ্রি mock test"
+  },
+  {
+   "name": "mini-ielts.com — Timed Test",
+   "url": "https://mini-ielts.com",
+   "note": "ফ্রি timed test"
+  },
+  {
+   "name": "ieltsOnlineTests.com",
+   "url": "https://ieltsOnlineTests.com",
+   "note": "ফ্রি online test"
+  },
+  {
+   "name": "Road to IELTS",
+   "url": "https://www.roadtoielts.com",
+   "note": "ফ্রি mock"
+  },
+  {
+   "name": "Munzeerin Mock Test 1–15 (PDF)",
+   "url": "https://github.com/DynamicBangla/IELTS-Course-by-Munzeerin-Shahid/tree/main/Mock%20Test",
+   "note": "ফ্রি ১৫টি mock PDF"
+  },
+  {
+   "name": "BIIC — Free Weekly Mock",
+   "url": "https://biic.com.bd",
+   "note": "ফ্রি weekly mock + diagnostic test"
+  }
+ ]
+}

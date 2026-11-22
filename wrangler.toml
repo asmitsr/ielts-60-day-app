@@ -1,0 +1,16 @@
+name = "ielts-60-day-app"
+compatibility_date = "2025-01-01"
+pages_build_output_dir = "dist"
+
+# Plain (non-secret) variables. Secrets go via `wrangler pages secret put`.
+[vars]
+# Set to "false" to disable open registration (private deployment).
+ALLOW_REGISTRATION = "true"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "ielts-60day-db"
+# Replace the placeholder below with the real id after running:
+#   npx wrangler d1 create ielts-60day-db
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"
