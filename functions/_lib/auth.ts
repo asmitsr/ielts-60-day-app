@@ -28,8 +28,10 @@ export interface FunctionContext {
   env: Env;
 }
 
-// OWASP recommendation for PBKDF2-HMAC-SHA256.
-const PBKDF2_ITERATIONS = 600000;
+// Cloudflare Workers' WebCrypto caps PBKDF2 at 100,000 iterations
+// (above that, deriveBits throws NotSupportedError and the Function
+// crashes with error 1101). 100,000 is the Workers maximum.
+const PBKDF2_ITERATIONS = 100000;
 const SESSION_MAX_AGE_S = 30 * 24 * 3600; // 30 days
 
 export function json(data: unknown, status = 200, headers: Record<string, string> = {}): Response {

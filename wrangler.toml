@@ -10,7 +10,6 @@ ALLOW_REGISTRATION = "true"
 [[d1_databases]]
 binding = "DB"
 database_name = "ielts-60day-db"
-# Replace the placeholder below with the real id after running:
-#   npx wrangler d1 create ielts-60day-db
-database_id = "00000000-0000-0000-0000-000000000000"
+# Production D1 database (created 22 Nov 2026 via API).
+database_id = "bb3c38eb-efbb-46ac-856d-bd44a41e5236"
 migrations_dir = "migrations"

@@ -23,7 +23,7 @@ services. Deploy target is Cloudflare Pages (not Vercel).
 - **Tick-offs and block times saved per user in D1** — same account on any
   device shows the same progress (multi-device sync via login)
 - **Auth:** registration + login, PBKDF2-HMAC-SHA256 password hashing
-  (600,000 iterations, unique salt per user), httpOnly / Secure / SameSite
+  (100,000 iterations — the Cloudflare Workers WebCrypto maximum — unique salt per user), httpOnly / Secure / SameSite
   session cookies. Open registration can be disabled for private deploys.
 - **7 sections:** Plan, Steps Guide, Practice, Resources, Exam Format,
   Cue Cards, Techniques
